@@ -1,0 +1,228 @@
+version: 1
+default_family: sdxl_anime_base
+
+keyword_rules:
+  - family: pony
+    keywords:
+      - pony
+  - family: illustration
+    keywords:
+      - illustrious
+      - illustrij
+      - illust
+      - illlustion
+      - lustrous
+  - family: realistic
+    keywords:
+      - realism
+      - realistic
+      - realxl
+      - unreal
+      - uncanny
+      - juggernaut
+      - deliberate
+      - applepie
+  - family: sdxl_anime_base
+    keywords:
+      - animagine
+      - anime
+      - niji
+      - counterfeit
+      - anything
+      - noobai
+      - noob
+      - astolfo
+      - albedo
+      - meichi
+      - stein
+      - bluepencil
+      - prefectious
+      - pornmaster
+      - arienmix
+      - wai
+
+model_defaults:
+  visibility: public
+  publish: true
+
+models:
+  albedobase-xl-v31-large:
+    aliases:
+      - sdxl_albedobaseXL_v31Large.safetensors
+  animagine-xl-4-opt:
+    aliases:
+      - sdxl_animagineXL40_v4Opt.safetensors
+  animagine-xl-v31:
+    aliases:
+      - sdxl_animagineXLV31_v31.safetensors
+  anything-xl:
+    aliases:
+      - sdxl_AnythingXL_xl.safetensors
+  astolfokarmix-xl:
+    aliases:
+      - sdxl_astolfokarmixXL_256cBased.safetensors
+  bismuth-illustrious-v60:
+    aliases:
+      - sdxl_bismuthIllustrious_v60.safetensors
+  blue-pencil-xl-v700:
+    aliases:
+      - sdxl_bluePencilXL_v700.safetensors
+  boleromix-illustrious-v601:
+    aliases:
+      - sdxl_boleromixIllustrious_v601.safetensors
+  counterfeit-xl-v25:
+    aliases:
+      - sdxl_counterfeitxl_v25.safetensors
+  cyberrealistic-pony-v150:
+    aliases:
+      - sdxl_cyberrealisticPony_v150.safetensors
+      - sdxl_cyberrealisticPony_v150__2.safetensors
+  diving-illustrious-real-v70:
+    family: illustration
+    aliases:
+      - sdxl_divingIllustriousReal_v70VAE.safetensors
+  epicrealism-xl:
+    aliases:
+      - sdxl_epicrealismXL_pureFix.safetensors
+  hassaku-xl-illustrious-v32:
+    aliases:
+      - sdxl_hassakuXLIllustrious_v32.safetensors
+  hikari-noob-vpred-124:
+    aliases:
+      - sdxl_hikariNoobVPred_124.safetensors
+  hoseki-lustrousmix-illustrious:
+    aliases:
+      - sdxl_hosekiLustrousmix_illustNoobaiEPS11V2.safetensors
+  illustrij-v20:
+    aliases:
+      - sdxl_illustrij_v20.safetensors
+  iniverse-pony-real-guofeng-v50a:
+    aliases:
+      - sdxl_iniverseMixSFWNSFW_ponyRealGuofengV50A.safetensors
+      - sdxl_iniverseMixSFWNSFW_ponyRealGuofengV50A__2.safetensors
+  iniverse-real-xl-v1:
+    aliases:
+      - sdxl_iniverseMixSFWNSFW_realXLV1.safetensors
+  janku-noobai-v60:
+    aliases:
+      - sdxl_JANKUTrainedNoobaiRouwei_v60.safetensors
+  jibmix-realistic-xl-v180:
+    aliases:
+      - sdxl_jibMixRealisticXL_v180SkinSupreme.safetensors
+  juggernaut-xl-ragnarok:
+    aliases:
+      - sdxl_juggernautXL_ragnarokBy.safetensors
+  meichidark-anime-v2:
+    aliases:
+      - sdxl_meichidarkmixReload_meichidarkanimv2Lust.safetensors
+  mistoon-anime-v10-illustrious:
+    family: illustration
+    aliases:
+      - sdxl_mistoonAnime_v10Illustrious.safetensors
+  mritual-illustrious-v201:
+    aliases:
+      - sdxl_mritualIllustrious_v201.safetensors
+  nova-anime-xl-v140:
+    aliases:
+      - sdxl_novaAnimeXL_ilV140.safetensors
+  nova-anime-xl-v150:
+    aliases:
+      - sdxl_novaAnimeXL_ilV150.safetensors
+  nova-unreal-xl-v100:
+    aliases:
+      - sdxl_novaUnrealXL_v100.safetensors
+  ntrmix-illustrious-xl-xiii:
+    aliases:
+      - sdxl_ntrMIXIllustriousXL_xiii.safetensors
+  obsession-illustrious-vpred-v11:
+    aliases:
+      - sdxl_obsessionIllustrious_vPredV11.safetensors
+  perfect-deliberate-v60:
+    aliases:
+      - sdxl_perfectdeliberate_v60.safetensors
+  pie-models-apple-pie-v2:
+    aliases:
+      - sdxl_pieModels_applePieV2.safetensors
+  pony-diffusion-v6-xl:
+    aliases:
+      - sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+  pornmaster-pro-sdxl-v8:
+    aliases:
+      - sdxl_pornmaster_proSDXLV8.safetensors
+  prefect-illustrious-xl-v60:
+    aliases:
+      - sdxl_prefectIllustriousXL_v60.safetensors
+  prefectious-xl-v10:
+    aliases:
+      - sdxl_prefectiousXLNSFW_v10.safetensors
+  prefect-pony-xl-v6:
+    aliases:
+      - sdxl_prefectPonyXL_v6.safetensors
+  realism-by-stable-yogi-v5-xl:
+    aliases:
+      - sdxl_realismByStableYogi_v5XLFP16.safetensors
+  real-pony-illustrious:
+    aliases:
+      - sdxl_realPony_illustriousPony.safetensors
+  arienmix-xl-v45:
+    aliases:
+      - sdxl_sdxl10ArienmixxlAsian_v45Pruned.safetensors
+  niji-seven-sdxl:
+    aliases:
+      - sdxl_sdxlNijiSeven_sdxlNijiSeven.safetensors
+  steincustom-v13:
+    aliases:
+      - sdxl_steincustom_V13.safetensors
+      - sdxl_steincustom_V13__2.safetensors
+  uncanny-valley-vpred-v1:
+    aliases:
+      - sdxl_uncannyValley_VPredV1.safetensors
+  wai-illustrious-sdxl-v160:
+    aliases:
+      - sdxl_waiIllustriousSDXL_v160.safetensors
+  wai-real-cn-v150:
+    family: sdxl_anime_base
+    aliases:
+      - sdxl_waiREALCN_v150.safetensors
+  wai-realmix-v11:
+    family: sdxl_anime_base
+    aliases:
+      - sdxl_waiREALMIX_v11.safetensors
+  xxmix9-realistic-sdxl-v10:
+    aliases:
+      - sdxl_xxmix9realisticsdxl_v10.safetensors
+  private-animagine-xl4-test3:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/Animagine_XL_4.0_base/test3_ver4.ckpt
+  private-animagine-xl4-test4-step8:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/Animagine_XL_4.0_base/test4_ver4-000008.ckpt
+  private-animagine-xl4-test4:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/Animagine_XL_4.0_base/test4_ver4.ckpt
+  private-illlustion-path2-step14:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/illlustion_base/path_2/test1_ver4-000014.ckpt
+  private-illlustion-path2:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/illlustion_base/path_2/test1_ver4.ckpt
+  private-illlustion-path4-step14:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/illlustion_base/path_4/test1_ver4-000014.ckpt
+  private-illlustion-path4:
+    visibility: private
+    publish: false
+    aliases:
+      - kohyass/keep/illlustion_base/path_4/test1_ver4.ckpt

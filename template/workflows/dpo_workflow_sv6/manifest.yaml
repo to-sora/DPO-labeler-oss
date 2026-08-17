@@ -1,0 +1,107 @@
+workflow_count: 4
+workflows:
+- task_name: sv6_sfw_same
+  output_yaml: sv6_sfw_same.yaml
+  pair_mode: same
+  template_short_name: sfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: sv6_sfw_diff
+  output_yaml: sv6_sfw_diff.yaml
+  pair_mode: diff
+  template_short_name: sfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: sv6_nsfw_same
+  output_yaml: sv6_nsfw_same.yaml
+  pair_mode: same
+  template_short_name: nsfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: sv6_nsfw_diff
+  output_yaml: sv6_nsfw_diff.yaml
+  pair_mode: diff
+  template_short_name: nsfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+wildcard_source_dir: template/wildcard/research_v6
+special_character_file: template/wildcard/custom_character_list.txt
+source_files:
+- Action_Pose.txt
+- Attire_Accessory.txt
+- Body_Appearance.txt
+- Character.txt
+- Composition_Camera.txt
+- Expression_Gaze.txt
+- NSFW_Nudity.txt
+- Object_Prop.txt
+- Other_General.txt
+- Person_Count_Identity.txt
+- Rating.txt
+- Relationship_Interaction.txt
+- Scene_Background.txt
+- Species_Fantasy_Trait.txt
+- Style_Medium.txt
+- semantic_class.txt
+empty_source_files: []
+template_omitted_source_files:
+- Body_Appearance.txt
+- Attire_Accessory.txt
+character_sources_enabled: true
+wildcard_mode: runtime_first_pointer_to_research_v6
+runtime_dirs_by_set:
+  sfw: runtime_sfw
+  nsfw: runtime_nsfw
+special_character_relative_path: sv6/Character.txt
+checkpoint_pools:
+  tier1_checkpoints:
+  - sdxl_animagineXL40_v4Opt.safetensors
+  - sdxl_astolfokarmixXL_256cBased.safetensors
+  - sdxl_hassakuXLIllustrious_v32.safetensors
+  - sdxl_illustrij_v20.safetensors
+  - sdxl_novaAnimeXL_ilV150.safetensors
+  - sdxl_perfectdeliberate_v60.safetensors
+  - sdxl_prefectiousXLNSFW_v10.safetensors
+  - sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+  custom_checkpoints:
+  - kohyass/keep/Animagine_XL_4.0_base/test3_ver4.ckpt
+  - kohyass/keep/Animagine_XL_4.0_base/test4_ver4-000008.ckpt
+  - kohyass/keep/Animagine_XL_4.0_base/test4_ver4.ckpt
+  - kohyass/keep/illlustion_base/path_2/test1_ver4-000014.ckpt
+  - kohyass/keep/illlustion_base/path_2/test1_ver4.ckpt
+  - kohyass/keep/illlustion_base/path_4/test1_ver4-000014.ckpt
+  - kohyass/keep/illlustion_base/path_4/test1_ver4.ckpt
+  remaining_checkpoints:
+  - sdxl_albedobaseXL_v31Large.safetensors
+  - sdxl_animagineXLV31_v31.safetensors
+  - sdxl_AnythingXL_xl.safetensors
+  - sdxl_bismuthIllustrious_v60.safetensors
+  - sdxl_bluePencilXL_v700.safetensors
+  - sdxl_boleromixIllustrious_v601.safetensors
+  - sdxl_hikariNoobVPred_124.safetensors
+  - sdxl_hosekiLustrousmix_illustNoobaiEPS11V2.safetensors
+  - sdxl_iniverseMixSFWNSFW_ponyRealGuofengV50A.safetensors
+  - sdxl_JANKUTrainedNoobaiRouwei_v60.safetensors
+  - sdxl_meichidarkmixReload_meichidarkanimv2Lust.safetensors
+  - sdxl_mritualIllustrious_v201.safetensors
+  - sdxl_novaAnimeXL_ilV140.safetensors
+  - sdxl_novaUnrealXL_v100.safetensors
+  - sdxl_ntrMIXIllustriousXL_xiii.safetensors
+  - sdxl_obsessionIllustrious_vPredV11.safetensors
+  - sdxl_pieModels_applePieV2.safetensors
+  - sdxl_pornmaster_proSDXLV8.safetensors
+  - sdxl_prefectIllustriousXL_v60.safetensors
+  - sdxl_prefectPonyXL_v6.safetensors
+  - sdxl_steincustom_V13__2.safetensors
+  - sdxl_steincustom_V13.safetensors
+  - sdxl_uncannyValley_VPredV1.safetensors
+  - sdxl_waiIllustriousSDXL_v160.safetensors
+  - sdxl_waiREALMIX_v11.safetensors
+  weight_targets:
+    tier1_total_weight: 0.3333333333333333
+    custom_total_weight: 0.3333333333333333
+    remaining_total_weight: 0.3333333333333333

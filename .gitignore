@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments and local config
+.venv/
+venv/
+.env
+.env.oss
+image_grader/venv/
+image_grader/config.local.json
+checkpoint_aliases.local.yaml
+
+# Project prompt assets are tracked; third-party wildcard packs are installed locally.
+template/wildcard/*
+!template/wildcard/custom_character_list.txt
+!template/wildcard/research_v2/
+!template/wildcard/research_v2/**
+!template/wildcard/research_v3/
+!template/wildcard/research_v3/**
+!template/wildcard/research_v4/
+!template/wildcard/research_v4/**
+!template/wildcard/research_v5/
+!template/wildcard/research_v5/**
+!template/wildcard/research_v6/
+!template/wildcard/research_v6/**
+!template/wildcard/research_v7/
+!template/wildcard/research_v7/**
+!template/wildcard/research_v8/
+!template/wildcard/research_v8/**
+template/wildcard/research_v5/imported/*.txt
+assets/comfy_prompt_payload.zip*
+
+# Runtime outputs and local state
+compiled_run/
+grouped_requests/
+collected/
+images/
+real_outputs/
+output/
+temp/
+models/
+run_results.jsonl
+*.sqlite3
+*.sqlite3-*
+
+# OS/editor noise
+.DS_Store
+.ipynb_checkpoints/

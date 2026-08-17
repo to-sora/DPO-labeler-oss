@@ -1,0 +1,529 @@
+{
+  "schema_version": 1,
+  "terms": {
+    "notice": "These wildcard archives are third-party content downloaded from Civitai. Running the installer with --accept-third-party-terms confirms that you chose to download them and agree to comply with each source page and Civitai's terms.",
+    "civitai_terms_url": "https://civitai.com/content/tos"
+  },
+  "sources": [
+    {
+      "id": "200_wildcards",
+      "title": "200+ Wildcards (NSFW and SFW)",
+      "creator": "ArtificeAI",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "civitai_uploader",
+      "model_id": 20868,
+      "version_id": 532723,
+      "model_url": "https://civitai.com/models/20868?modelVersionId=532723",
+      "download_url": "https://civitai.com/api/download/models/532723",
+      "archive_filename": "200WildcardsNSFWAnd_v20.zip",
+      "archive_sha256": "835866756c867fabf405a3af49f6bbd901616fe4fd7418c0b38d509239faf348",
+      "archive_size_bytes": 217894,
+      "max_uncompressed_bytes": 8388608,
+      "destination": "200WildcardsNSFWAnd_v20",
+      "sentinel": "wildcards/angle.txt",
+      "expected_file_count": 211,
+      "expected_tree_sha256": "cce07459c73971b382964f6643fa18760862942c581be0ac65e44ee8ed96f053"
+    },
+    {
+      "id": "5770_characters",
+      "title": "5770 Anime and Game Characters",
+      "creator": "HITTRAKKZ",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "uploader_states_not_original_author",
+      "model_id": 321794,
+      "version_id": 360839,
+      "model_url": "https://civitai.com/models/321794?modelVersionId=360839",
+      "download_url": "https://civitai.com/api/download/models/360839",
+      "archive_filename": "5770AnimeAndGameCharacters_v10.zip",
+      "archive_sha256": "976c0ce9b24639c6b51c23de78a4e616fc742ae3802d7ceffffbf28410f238cb",
+      "archive_size_bytes": 567718,
+      "max_uncompressed_bytes": 16777216,
+      "destination": "5770AnimeAndGameCharacters_v10",
+      "sentinel": "nai/Composition/Camera/angle.txt",
+      "expected_file_count": 120,
+      "expected_tree_sha256": "0098beaa6990fd50542fabac9a8c27b773701546c85c2f9d7df42a77443b6970"
+    },
+    {
+      "id": "mixed_artist",
+      "title": "NAIv3 / Illustrious XL Mixed Artist Style Codex",
+      "creator": "dims2",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "uploader_states_source_is_unknown_chinese_community",
+      "model_id": 924258,
+      "version_id": 1034550,
+      "model_url": "https://civitai.com/models/924258?modelVersionId=1034550",
+      "download_url": "https://civitai.com/api/download/models/1034550",
+      "archive_filename": "Naiv3IllustriousXLMixedArtist_v10.zip",
+      "archive_sha256": "9b6b62770544751d4dfbd3bc7fa5135add46d93c80ec89239d5e898fbbc09b1c",
+      "archive_size_bytes": 287748231,
+      "max_uncompressed_bytes": 471859200,
+      "destination": "Naiv3IllustriousXLMixedArtist_v10",
+      "sentinel": "mixed_artists_wildcards.txt",
+      "include_files": [
+        "mixed_artists_wildcards.txt"
+      ],
+      "expected_file_count": 1,
+      "expected_tree_sha256": "f1b41c3669197cd5859ca93f7e8d27d25f2b97d185641c6bddcda07be435446b"
+    },
+    {
+      "id": "sexy_maid",
+      "title": "Advanced Wildcards - Sexy Maid Kit",
+      "creator": "subsudo",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "civitai_uploader",
+      "model_id": 76968,
+      "version_id": 81762,
+      "model_url": "https://civitai.com/models/76968?modelVersionId=81762",
+      "download_url": "https://civitai.com/api/download/models/81762",
+      "archive_filename": "advancedWildcardsSexyMaidKit_v10.zip",
+      "archive_sha256": "779d2756d41f31eb148f6b668b928a68be0b5c80a06405c2b18ea4419e6606d2",
+      "archive_size_bytes": 4283,
+      "max_uncompressed_bytes": 1048576,
+      "destination": "advancedWildcardsSexyMaidKit_v10",
+      "sentinel": "advanced-maid-headwear.txt",
+      "expected_file_count": 3,
+      "expected_tree_sha256": "92e3fc640f01083748b3fba6e6d9df6eda1209e0dd6404bc81f456eceee9b1af"
+    },
+    {
+      "id": "clothes",
+      "title": "Clothes Wildcards",
+      "creator": "leezi80",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "civitai_uploader",
+      "model_id": 73184,
+      "version_id": 77904,
+      "model_url": "https://civitai.com/models/73184?modelVersionId=77904",
+      "download_url": "https://civitai.com/api/download/models/77904",
+      "archive_filename": "clothesWildcards_v10.zip",
+      "archive_sha256": "a7684162f9fbbcad6f9c3f3345e0254db350246418670804ccb9826f532482c5",
+      "archive_size_bytes": 92097,
+      "max_uncompressed_bytes": 8388608,
+      "destination": "clothesWildcards_v10",
+      "sentinel": "Casual outfit/Casual outfit.txt",
+      "expected_file_count": 125,
+      "expected_tree_sha256": "29f2188dd7281a0f1e28982c3d2e10dc8aa2ffa07a7c21cd65e69d8a83cf7837"
+    },
+    {
+      "id": "organic_composable",
+      "title": "Organic Composable Wildcards",
+      "creator": "gustproof",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "civitai_uploader",
+      "model_id": 138152,
+      "version_id": 154598,
+      "model_url": "https://civitai.com/models/138152?modelVersionId=154598",
+      "download_url": "https://civitai.com/api/download/models/154598",
+      "archive_filename": "organicComposable_v10.zip",
+      "archive_sha256": "bce04865a70b0182372bb43999358c6f931ead0cd9fa550d6bffefd577d5a285",
+      "archive_size_bytes": 1729594,
+      "max_uncompressed_bytes": 33554432,
+      "destination": "organicComposable_v10",
+      "sentinel": "actions.txt",
+      "expected_file_count": 12,
+      "expected_tree_sha256": "a23ec390530526fbe4c9f9684bc9a3efc9f9bb11cdd98a2e85bb1c3beafece35"
+    },
+    {
+      "id": "sexual_emotions",
+      "title": "Wildcards Sexual Emotions",
+      "creator": "Michael_Stablovski",
+      "license_status": "not_declared_in_download",
+      "provenance_status": "civitai_uploader",
+      "model_id": 1177320,
+      "version_id": 1324764,
+      "model_url": "https://civitai.com/models/1177320?modelVersionId=1324764",
+      "download_url": "https://civitai.com/api/download/models/1324764",
+      "archive_filename": "wildcardsSexual_v10.zip",
+      "archive_sha256": "341d2d2f71a6e17cac67759cc1e6074fcc558e3760606b4dea61768a45314bde",
+      "archive_size_bytes": 487,
+      "max_uncompressed_bytes": 1048576,
+      "destination": "wildcardsSexual_v10",
+      "sentinel": "sexual emotions.txt",
+      "expected_file_count": 1,
+      "expected_tree_sha256": "b5203dadd5712efb70110287b7ad02c19250ee71c162fdf889e0a952c27c4203"
+    }
+  ],
+  "text_replacements": [
+    {
+      "path": "5770AnimeAndGameCharacters_v10/nai/Backgrounds/backgrounds_old/locations.txt",
+      "replacements": [
+        {
+          "old": "outdoors, __locations/outdoors__",
+          "new": "outdoors, __Backgrounds/backgrounds_old/outdoors__",
+          "expected_occurrences": 1
+        },
+        {
+          "old": "indoors, __locations/indoors__",
+          "new": "indoors, __Backgrounds/backgrounds_old/indoors__",
+          "expected_occurrences": 1
+        },
+        {
+          "old": "building, __locations/building__",
+          "new": "building, __Backgrounds/backgrounds_old/building__",
+          "expected_occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "5770AnimeAndGameCharacters_v10/nai/Composition/Camera/camera.txt",
+      "replacements": [
+        {
+          "old": "__compisition/camera/",
+          "new": "__Composition/Camera/",
+          "expected_occurrences": 12
+        }
+      ]
+    },
+    {
+      "path": "5770AnimeAndGameCharacters_v10/nai/Composition/Positions/positions_nsfw.txt",
+      "normalize_newlines": false,
+      "replacements": [
+        {
+          "old": "standing, topless, (__clothing/panties/panties__:1.2)\r\n",
+          "new": "standing, topless, (__clothing/panties/panties_gen__:1.2)\n",
+          "expected_occurrences": 1
+        }
+      ]
+    }
+  ],
+  "writes": [
+    {
+      "path": "5770AnimeAndGameCharacters_v10/nai/Backgrounds/beach.txt",
+      "content": "__Backgrounds/ocean__\n"
+    },
+    {
+      "path": "5770AnimeAndGameCharacters_v10/nai/Backgrounds/home.txt",
+      "content": "__Backgrounds/misc__\n"
+    },
+    {
+      "path": "5770AnimeAndGameCharacters_v10/nai/Backgrounds/interior.txt",
+      "content": "__Backgrounds/city__\n"
+    }
+  ],
+  "copies": [
+    {
+      "source": "clothesWildcards_v10/Cardigan/cardigan_style1.txt",
+      "target": "clothesWildcards_v10/Cardigan/cardigan_style11.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Cardigan/cardigan_style2.txt",
+      "target": "clothesWildcards_v10/Cardigan/cardigan_style17.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Cardigan/cardigan_style3.txt",
+      "target": "clothesWildcards_v10/Cardigan/cardigan_style26.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Luxauly_outfit/luxauly look4.txt",
+      "target": "clothesWildcards_v10/Luxauly_outfit/luxury_look22.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Luxauly_outfit/luxauly look4.txt",
+      "target": "clothesWildcards_v10/Luxauly_outfit/luxury_look9.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Traning_outfit/traning_look2.txt",
+      "target": "clothesWildcards_v10/Traning_outfit/traning_look24.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Traning_outfit/traning_look1.txt",
+      "target": "clothesWildcards_v10/Traning_outfit/traning_look6.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style1.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look1.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style1.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look14.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style2.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look15.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style3.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look20.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style1.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look29.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style2.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look4.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/bikini style/bikini style3.txt",
+      "target": "clothesWildcards_v10/bikini style/bikini_look5.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/dress/dress2.txt",
+      "target": "clothesWildcards_v10/dress/dress_style10.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/dress/dress3.txt",
+      "target": "clothesWildcards_v10/dress/dress_style19.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/dress/dress2.txt",
+      "target": "clothesWildcards_v10/dress/dress_style25.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/dress/dress1.txt",
+      "target": "clothesWildcards_v10/dress/dress_style5.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/korean girl style/koreanlook3.txt",
+      "target": "clothesWildcards_v10/korean girl style/korean_look18.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/korean girls/korean girl2.txt",
+      "target": "clothesWildcards_v10/korean girls/korean_look12.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/korean girls/korean girl3.txt",
+      "target": "clothesWildcards_v10/korean girls/korean_look27.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Overfit style/overfit style1.txt",
+      "target": "clothesWildcards_v10/overfit style/overfit style1.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/Overfit style/overfit style3.txt",
+      "target": "clothesWildcards_v10/overfit style/overfit style3.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/stewardess outfit styles/stewardess outfit styles4.txt",
+      "target": "clothesWildcards_v10/stewardess outfit styles/stewardess_look21.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/stewardess outfit styles/stewardess outfit styles3.txt",
+      "target": "clothesWildcards_v10/stewardess outfit styles/stewardess_look7.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/sundress/sundress1.txt",
+      "target": "clothesWildcards_v10/sundress/dress_look13.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/sundress/sundress2.txt",
+      "target": "clothesWildcards_v10/sundress/dress_look16.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/sundress/sundress3.txt",
+      "target": "clothesWildcards_v10/sundress/dress_look23.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/sundress/sundress1.txt",
+      "target": "clothesWildcards_v10/sundress/dress_look28.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/sundress/sundress3.txt",
+      "target": "clothesWildcards_v10/sundress/dress_look3.txt"
+    },
+    {
+      "source": "clothesWildcards_v10/sundress/sundress2.txt",
+      "target": "clothesWildcards_v10/sundress/dress_look8.txt"
+    }
+  ],
+  "directory_copies": [
+    {
+      "source": "advancedWildcardsSexyMaidKit_v10",
+      "target": "advancedWildcardsSexyMaidKit_v10 (2)",
+      "expected_file_count": 3,
+      "expected_tree_sha256": "92e3fc640f01083748b3fba6e6d9df6eda1209e0dd6404bc81f456eceee9b1af"
+    }
+  ],
+  "derived_line_sets": [
+    {
+      "target": "research_v5/imported/subject_count.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_subject_count.txt",
+          "lines": [1, 2, 3]
+        }
+      ],
+      "sha256": "a140e657f84e1edadc395d77e7427562bd768af0e8711be9cb7b7d00db29c587"
+    },
+    {
+      "target": "research_v5/imported/identity_illustration.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_identity_illustration.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "2df908b71d56afcf225d0251ea5679cc3126267692b41f933fba02ce6cc97b58"
+    },
+    {
+      "target": "research_v5/imported/identity_sdxl_anime_base.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_identity_sdxl_anime_base.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "bd62dd492441af527cf3f1eea31f81dbb180e08ba2b686b8c6dc3d1c3a849bba"
+    },
+    {
+      "target": "research_v5/imported/identity_pony.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_identity_pony.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "cf4d4af390d52327315b4d21c5bb812bc485ee0fc19f4d7a478192a9a9d799e8"
+    },
+    {
+      "target": "research_v5/imported/identity_realistic.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_identity_realistic.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "d8f83b6d16298c9d965c0dcebcc0d6c1888f412ac789f5ebe972880f7745e83f"
+    },
+    {
+      "target": "research_v5/imported/body_style.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_body_style.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "02185a15982b5037a39583a3cf76bd3e9e51868f7200c393245462a0a175757f"
+    },
+    {
+      "target": "research_v5/imported/expression.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_expression.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "e9ad0f6eba5e8ca3946f862a15eaee89a02076befe080a16199199f7ea6be9fe"
+    },
+    {
+      "target": "research_v5/imported/face_detail.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_face_detail.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "5f1054646e9520f1d82c6144d44a4f46f02a10c77e366258bd02cc6790318ecf"
+    },
+    {
+      "target": "research_v5/imported/pose_core.txt",
+      "selectors": [
+        {
+          "source": "5770AnimeAndGameCharacters_v10/nai/Composition/Positions/positions.txt",
+          "lines": [13, 6, 17, 18, 11, 10, 4, 8]
+        }
+      ],
+      "sha256": "279a11c75f1a4048e38cab77ed9636a873d9ec5b44d68c7f8c77c8e1c4783d00"
+    },
+    {
+      "target": "research_v5/imported/pose_adult.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_pose.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "67589fad4262560cd8e3d2a239fe36273aeae2fa1a556483c782645a6f041d31"
+    },
+    {
+      "target": "research_v5/imported/framing.txt",
+      "selectors": [
+        {
+          "source": "5770AnimeAndGameCharacters_v10/nai/Composition/Camera/framing.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7]
+        }
+      ],
+      "sha256": "f40f1936c813573219479822093c76e91aa68e6f16b0ca45bcdc35c362a04eb6"
+    },
+    {
+      "target": "research_v5/imported/camera.txt",
+      "selectors": [
+        {
+          "source": "5770AnimeAndGameCharacters_v10/nai/Composition/Camera/angle.txt",
+          "lines": [1, 3, 4, 6]
+        },
+        {
+          "source": "200WildcardsNSFWAnd_v20/wildcards/angle.txt",
+          "lines": [17]
+        },
+        {
+          "source": "5770AnimeAndGameCharacters_v10/nai/Composition/Camera/angle.txt",
+          "lines": [10]
+        }
+      ],
+      "sha256": "7accc08e87e40c040677f5dd7731085e004f6da85362a55a2d09004f44b91694"
+    },
+    {
+      "target": "research_v5/imported/location.txt",
+      "selectors": [
+        {
+          "source": "5770AnimeAndGameCharacters_v10/nai/locations.txt",
+          "lines": [4, 2, 15, 16, 6, 9, 11, 20]
+        }
+      ],
+      "sha256": "ff08c4efbdfd957052e85aefd364ba9673dd68ffcd37975ccde7df3928138673"
+    },
+    {
+      "target": "research_v5/imported/lighting.txt",
+      "selectors": [
+        {
+          "source": "5770AnimeAndGameCharacters_v10/nai/quality/Light.txt",
+          "lines": [4, 5, 6, 7, 8, 10, 19, 20]
+        }
+      ],
+      "sha256": "9c4530d4fc843dfafca0574776ddb8341d8a17b0051f6bb889de0f3ba083c891"
+    },
+    {
+      "target": "research_v5/imported/wardrobe_core.txt",
+      "selectors": [
+        {
+          "source": "clothesWildcards_v10/Casual outfit/Casual outfit.txt",
+          "lines": [1, 2, 4, 5]
+        },
+        {
+          "source": "clothesWildcards_v10/Knit_outfit/knit_style1.txt",
+          "lines": [1, 3]
+        },
+        {
+          "source": "clothesWildcards_v10/Luxauly_outfit/luxauly look.txt",
+          "lines": [4, 2, 3, 9]
+        }
+      ],
+      "sha256": "0f53c458db547d0e56cdd2a0ac277bf413455208fcefa6ff1b0c8a47dc69d47a"
+    },
+    {
+      "target": "research_v5/imported/wardrobe_adult.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_wardrobe_state.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "4fce80f291846a5d448ae8374d6bdf9eaa40c8bf2cd47f3e51a759aee7bd4101"
+    },
+    {
+      "target": "research_v5/imported/surface_detail.txt",
+      "selectors": [
+        {
+          "source": "research_v5/adult_surface_detail.txt",
+          "lines": [1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ],
+      "sha256": "5e634cf97d3aafc7404406ac6c6f0780a182f5957469a8b7c48122e803c64204"
+    }
+  ],
+  "derived_tree": {
+    "path": "research_v5/imported",
+    "expected_file_count": 19,
+    "expected_tree_sha256": "f31f2d3888e0a5c6a43dc00f6e2c7a507968fbabaeb02a44e9fe75c2c358416c"
+  }
+}

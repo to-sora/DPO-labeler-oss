@@ -1,0 +1,30 @@
+workflow_count: 4
+workflows:
+- task_name: v3_compact_same
+  output_yaml: v3_compact_same.yaml
+  pair_mode: same
+  template_short_name: compact
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v3_compact_diff
+  output_yaml: v3_compact_diff.yaml
+  pair_mode: diff
+  template_short_name: compact
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v3_cinematic_same
+  output_yaml: v3_cinematic_same.yaml
+  pair_mode: same
+  template_short_name: cinematic
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v3_cinematic_diff
+  output_yaml: v3_cinematic_diff.yaml
+  pair_mode: diff
+  template_short_name: cinematic
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30

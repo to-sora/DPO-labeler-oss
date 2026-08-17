@@ -1,0 +1,53 @@
+version: 1
+task_name: example_task
+global_seed: 2025
+session_count: 1
+images:
+  - image_name: image1
+    workflow_name: SdxlEaseLoraWorkflow
+    ckpt: sdxl_illustrij_v20.safetensors
+    lora_stack_config:
+      toggle: false
+      mode: simple
+      num_loras: 1
+      lora_1_name: None
+      lora_1_strength: 1.0
+      lora_1_model_strength: 1.0
+      lora_1_clip_strength: 1.0
+    prompt_generator:
+      name: prompt_list_v1
+      args:
+        prompt_list: prompt_list_demo_v1/illustration
+        prompt_list_root: ../prompt_lists
+        negative_prompt: lowres, blurry, bad anatomy, bad hands, text, watermark
+    sample:
+      generation_seed_control: image_index_seed
+      steps: 12
+      cfg: 6.0
+      width: 512
+      height: 512
+  - image_name: image2
+    workflow_name: SdxlEaseLoraLatentUpscaleWorkflow
+    ckpt: sdxl_illustrij_v20.safetensors
+    lora_stack_config:
+      toggle: false
+      mode: simple
+      num_loras: 1
+      lora_1_name: None
+      lora_1_strength: 1.0
+      lora_1_model_strength: 1.0
+      lora_1_clip_strength: 1.0
+    prompt_generator:
+      name: prompt_list_v1
+      args:
+        prompt_list: prompt_list_demo_v1/illustration
+        prompt_list_root: ../prompt_lists
+        negative_prompt: lowres, blurry, bad anatomy, bad hands, text, watermark
+    sample:
+      generation_seed_control: image_index_seed
+      steps: 12
+      cfg: 6.0
+      width: 512
+      height: 512
+    workflow_kwargs:
+      upscale_by: 1.5

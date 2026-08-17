@@ -1,0 +1,7 @@
+comic
+traditional_media
+realistic
+watercolor_(medium)
+lineart
+photorealistic
+watercolor_pencil_(medium)

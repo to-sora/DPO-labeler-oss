@@ -1,0 +1,59 @@
+workflow_count: 4
+global_seed: 20260422
+requested_session_count: 30
+workflows:
+- task_name: v8_sfw_same
+  output_yaml: v8_sfw_same.yaml
+  pair_mode: same
+  template_short_name: sfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v8_sfw_diff
+  output_yaml: v8_sfw_diff.yaml
+  pair_mode: diff
+  template_short_name: sfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v8_nsfw_same
+  output_yaml: v8_nsfw_same.yaml
+  pair_mode: same
+  template_short_name: nsfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v8_nsfw_diff
+  output_yaml: v8_nsfw_diff.yaml
+  pair_mode: diff
+  template_short_name: nsfw
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+source_files:
+- Action_Pose.txt
+- Attire_Accessory.txt
+- Body_Appearance.txt
+- Composition_Camera.txt
+- Expression_Gaze.txt
+- NSFW_Nudity.txt
+- Object_Prop.txt
+- Other_General.txt
+- Person_Count_Identity.txt
+- Rating.txt
+- Relationship_Interaction.txt
+- Scene_Background.txt
+- Species_Fantasy_Trait.txt
+- Style_Medium.txt
+empty_source_files: []
+mirrored_files: []
+template_omitted_source_files:
+- Character.txt
+- characters/*
+- semantic_class.txt
+character_sources_enabled: false
+wildcard_mode: runtime_first_with_no_semantic_or_character_fallback
+runtime_dirs_by_set:
+  sfw: runtime_sfw
+  nsfw: runtime_nsfw
+top_level_template_fallbacks: []

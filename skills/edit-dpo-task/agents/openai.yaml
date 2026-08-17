@@ -1,0 +1,4 @@
+interface:
+  display_name: "Edit DPO Task"
+  short_description: "Edit and validate Comfy DPO task YAML"
+  default_prompt: "Use $edit-dpo-task to update a task YAML and verify its checkpoint families and request counts."

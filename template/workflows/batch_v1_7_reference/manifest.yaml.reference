@@ -1,0 +1,43 @@
+reference_only: true
+workflow_count: 8
+rows:
+- version: v6_OLD_Mix
+  template: nsfw
+  pair_mode: different_model
+  file: v6_OLD_Mix__nsfw__different_model.yaml.reference
+  task_name: v6_OLD_Mix__nsfw__different_model
+- version: v6_OLD_Mix
+  template: nsfw
+  pair_mode: same_model
+  file: v6_OLD_Mix__nsfw__same_model.yaml.reference
+  task_name: v6_OLD_Mix__nsfw__same_model
+- version: v6_OLD_Mix
+  template: sfw
+  pair_mode: different_model
+  file: v6_OLD_Mix__sfw__different_model.yaml.reference
+  task_name: v6_OLD_Mix__sfw__different_model
+- version: v6_OLD_Mix
+  template: sfw
+  pair_mode: same_model
+  file: v6_OLD_Mix__sfw__same_model.yaml.reference
+  task_name: v6_OLD_Mix__sfw__same_model
+- version: v7_OLD_Mix
+  template: nsfw
+  pair_mode: different_model
+  file: v7_OLD_Mix__nsfw__different_model.yaml.reference
+  task_name: v7_OLD_Mix__nsfw__different_model
+- version: v7_OLD_Mix
+  template: nsfw
+  pair_mode: same_model
+  file: v7_OLD_Mix__nsfw__same_model.yaml.reference
+  task_name: v7_OLD_Mix__nsfw__same_model
+- version: v7_OLD_Mix
+  template: sfw
+  pair_mode: different_model
+  file: v7_OLD_Mix__sfw__different_model.yaml.reference
+  task_name: v7_OLD_Mix__sfw__different_model
+- version: v7_OLD_Mix
+  template: sfw
+  pair_mode: same_model
+  file: v7_OLD_Mix__sfw__same_model.yaml.reference
+  task_name: v7_OLD_Mix__sfw__same_model

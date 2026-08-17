@@ -1,0 +1,121 @@
+{
+  "expressions": [
+    {"id":"ex001","label":"tender smile","mood_tags":["tender","romantic","intimate","warm"],"energy":"low","prompt_token":"gentle smile, soft eyes, tender expression"},
+    {"id":"ex002","label":"shy flustered","mood_tags":["shy","flustered","romantic","intimate"],"energy":"low","prompt_token":"blushing, averted eyes, embarrassed smile, flustered"},
+    {"id":"ex003","label":"laughing joyful","mood_tags":["laughing","happy","cheerful","playful"],"energy":"high","prompt_token":"laughing, eyes closed in joy, wide smile, carefree"},
+    {"id":"ex004","label":"wistful distant","mood_tags":["wistful","nostalgic","melancholic","peaceful"],"energy":"very_low","prompt_token":"distant gaze, slight melancholy, wistful expression, far-off look"},
+    {"id":"ex005","label":"focused intense","mood_tags":["focused","competitive","intense","determined"],"energy":"high","prompt_token":"furrowed brow, determined eyes, intense focus, concentrated expression"},
+    {"id":"ex006","label":"content serene","mood_tags":["content","peaceful","relaxed","cozy"],"energy":"very_low","prompt_token":"serene expression, soft smile, eyes slightly closed, at peace"},
+    {"id":"ex007","label":"surprised wide-eyed","mood_tags":["surprised","excited","wonder","shocked"],"energy":"medium","prompt_token":"wide eyes, open mouth, surprised expression, taken aback"},
+    {"id":"ex008","label":"tearful emotional","mood_tags":["tearful","sad","dramatic","bittersweet"],"energy":"low","prompt_token":"glistening eyes, trembling lip, emotional expression, holding back tears"},
+    {"id":"ex009","label":"mischievous grin","mood_tags":["mischievous","playful","competitive","amused"],"energy":"medium","prompt_token":"sly grin, narrowed eyes, mischievous smirk, plotting expression"},
+    {"id":"ex010","label":"happy bright smile","mood_tags":["happy","cheerful","festive","romantic"],"energy":"medium","prompt_token":"bright smile, sparkling eyes, radiant expression, openly happy"},
+    {"id":"ex011","label":"angry defiant","mood_tags":["angry","defiant","frustrated","tense"],"energy":"high","prompt_token":"furrowed brows, set jaw, flashing eyes, defiant glare"},
+    {"id":"ex012","label":"curious interested","mood_tags":["curious","focused","wonder","creative"],"energy":"medium","prompt_token":"tilted head, bright curious eyes, interested expression, inquisitive look"},
+    {"id":"ex013","label":"tired drowsy","mood_tags":["tired","cozy","peaceful","relaxed"],"energy":"very_low","prompt_token":"heavy eyelids, drowsy expression, soft unfocused gaze, sleepy"},
+    {"id":"ex014","label":"proud confident","mood_tags":["proud","competitive","energetic","excited"],"energy":"high","prompt_token":"chin up, confident smile, proud posture, self-assured expression"},
+    {"id":"ex015","label":"longing yearning","mood_tags":["longing","romantic","bittersweet","dramatic"],"energy":"low","prompt_token":"soft longing gaze, parted lips, yearning expression, heartache in eyes"},
+    {"id":"ex016","label":"playful teasing","mood_tags":["playful","casual","cheerful","amused"],"energy":"medium","prompt_token":"playful smirk, raised eyebrow, teasing glint, lighthearted expression"},
+    {"id":"ex017","label":"serious contemplative","mood_tags":["serious","dramatic","focused","reflective"],"energy":"low","prompt_token":"serious expression, thoughtful eyes, contemplative gaze, weighing expression"},
+    {"id":"ex018","label":"gentle worried","mood_tags":["worried","gentle","dramatic","warm"],"energy":"low","prompt_token":"furrowed brow with concern, soft worried eyes, caring expression"},
+    {"id":"ex019","label":"excited breathless","mood_tags":["excited","energetic","festive","playful"],"energy":"very_high","prompt_token":"flushed cheeks, bright excited eyes, breathless open smile, exhilarated"},
+    {"id":"ex020","label":"dreamy peaceful","mood_tags":["dreamy","peaceful","wonder","romantic"],"energy":"very_low","prompt_token":"soft dreamy gaze, gentle smile, ethereal expression, lost in thought"}
+  ],
+
+  "dressing_sets": {
+    "outdoor_spring_romantic": [
+      {"id":"dr001","desc":"floral sundress with light cardigan, small cross-body bag","gender_hint":"feminine","tags":{"season":["spring"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"floral sundress, light cardigan, small bag, spring casual outfit"},
+      {"id":"dr002","desc":"pastel button-down shirt, white chinos, loafers","gender_hint":"masculine","tags":{"season":["spring"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"pastel button shirt, white pants, loafers, neat casual spring outfit"},
+      {"id":"dr003","desc":"light linen two-piece set, sandals, sun hat","gender_hint":"neutral","tags":{"season":["spring"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"linen coordinates, sandals, wide brim hat, breezy spring outfit"}
+    ],
+    "outdoor_summer_energetic": [
+      {"id":"dr004","desc":"crop top, high-waist shorts, sneakers, baseball cap","gender_hint":"feminine","tags":{"season":["summer"],"location_type":["outdoor"],"energy":["medium","high","very_high"],"formality":"casual"},"prompt_token":"crop top, denim shorts, sneakers, cap, summer casual"},
+      {"id":"dr005","desc":"graphic tee, cargo shorts, chunky sneakers","gender_hint":"masculine","tags":{"season":["summer"],"location_type":["outdoor"],"energy":["medium","high","very_high"],"formality":"casual"},"prompt_token":"graphic tee, cargo shorts, chunky sneakers, streetwear summer"},
+      {"id":"dr006","desc":"sleeveless hoodie, athletic shorts, running shoes","gender_hint":"neutral","tags":{"season":["summer"],"location_type":["outdoor","gym"],"energy":["high","very_high"],"formality":"sporty"},"prompt_token":"sleeveless hoodie, athletic shorts, running shoes, sporty summer"}
+    ],
+    "outdoor_summer_beach": [
+      {"id":"dr007","desc":"flowy beach cover-up over swimsuit, flip flops","gender_hint":"feminine","tags":{"season":["summer"],"location_type":["outdoor","beach"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"beach cover-up, swimsuit visible, flip flops, beach casual"},
+      {"id":"dr008","desc":"short-sleeve linen shirt open over tank, board shorts, sandals","gender_hint":"masculine","tags":{"season":["summer"],"location_type":["outdoor","beach"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"open linen shirt, tank, board shorts, sandals, beach outfit"}
+    ],
+    "outdoor_autumn_casual": [
+      {"id":"dr009","desc":"oversized knit sweater, corduroy pants, ankle boots","gender_hint":"neutral","tags":{"season":["autumn"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"oversized knit sweater, corduroy pants, ankle boots, autumn cozy"},
+      {"id":"dr010","desc":"turtleneck, plaid skirt, knee-high boots, small shoulder bag","gender_hint":"feminine","tags":{"season":["autumn"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"turtleneck sweater, plaid skirt, knee boots, autumn fashion"},
+      {"id":"dr011","desc":"bomber jacket, dark jeans, white sneakers, beanie","gender_hint":"neutral","tags":{"season":["autumn"],"location_type":["outdoor"],"energy":["medium","high"],"formality":"casual"},"prompt_token":"bomber jacket, dark jeans, sneakers, beanie, autumn streetwear"}
+    ],
+    "outdoor_winter_cozy": [
+      {"id":"dr012","desc":"long wool coat, chunky scarf, leather gloves, ankle boots","gender_hint":"neutral","tags":{"season":["winter"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"smart_casual"},"prompt_token":"long wool coat, chunky scarf, leather gloves, winter chic"},
+      {"id":"dr013","desc":"puffer jacket, thick knit beanie, mittens, snow boots","gender_hint":"neutral","tags":{"season":["winter"],"location_type":["outdoor"],"energy":["medium","high","very_high"],"formality":"casual"},"prompt_token":"puffer jacket, beanie, mittens, snow boots, winter warm"},
+      {"id":"dr014","desc":"peacoat, plaid scarf wrapped high, earmuffs, dark trousers","gender_hint":"neutral","tags":{"season":["winter"],"location_type":["outdoor"],"energy":["low","medium"],"formality":"smart_casual"},"prompt_token":"peacoat, plaid scarf, earmuffs, winter smart casual"}
+    ],
+    "indoor_casual": [
+      {"id":"dr015","desc":"cozy oversized hoodie, jogger pants, fuzzy slippers","gender_hint":"neutral","tags":{"season":["any"],"location_type":["indoor"],"energy":["very_low","low"],"formality":"home_casual"},"prompt_token":"oversized hoodie, jogger pants, fuzzy slippers, cozy homewear"},
+      {"id":"dr016","desc":"simple t-shirt, relaxed fit jeans, white sneakers","gender_hint":"neutral","tags":{"season":["any"],"location_type":["indoor"],"energy":["low","medium"],"formality":"casual"},"prompt_token":"simple tee, relaxed jeans, sneakers, everyday casual"},
+      {"id":"dr017","desc":"knit cardigan over shirt, comfortable straight-leg pants, loafers","gender_hint":"neutral","tags":{"season":["any"],"location_type":["indoor"],"energy":["low","medium"],"formality":"smart_casual"},"prompt_token":"knit cardigan, straight pants, loafers, indoor smart casual"}
+    ],
+    "indoor_cafe_date": [
+      {"id":"dr018","desc":"cute patterned midi dress, small earrings, mary janes","gender_hint":"feminine","tags":{"season":["any"],"location_type":["indoor","cafe"],"energy":["low","medium"],"formality":"smart_casual"},"prompt_token":"patterned midi dress, small earrings, mary janes, cafe date outfit"},
+      {"id":"dr019","desc":"neat collared shirt tucked into slim trousers, clean sneakers","gender_hint":"masculine","tags":{"season":["any"],"location_type":["indoor","cafe"],"energy":["low","medium"],"formality":"smart_casual"},"prompt_token":"collared shirt, slim trousers, clean sneakers, smart cafe outfit"},
+      {"id":"dr020","desc":"soft blouse, wide-leg trousers, block heel mules","gender_hint":"neutral","tags":{"season":["any"],"location_type":["indoor","cafe"],"energy":["low","medium"],"formality":"smart_casual"},"prompt_token":"soft blouse, wide-leg pants, block heels, chic cafe look"}
+    ],
+    "indoor_school": [
+      {"id":"dr021","desc":"standard school uniform blazer and skirt, white socks","gender_hint":"feminine","tags":{"season":["any"],"location_type":["indoor","school"],"energy":["low","medium"],"formality":"uniform"},"prompt_token":"school uniform, blazer, skirt, white socks, japanese school uniform"},
+      {"id":"dr022","desc":"standard school uniform blazer and trousers, white shirt","gender_hint":"masculine","tags":{"season":["any"],"location_type":["indoor","school"],"energy":["low","medium"],"formality":"uniform"},"prompt_token":"school uniform, blazer, trousers, white shirt, gakuran style"},
+      {"id":"dr023","desc":"school uniform with loose socks, slightly customized cardigan over","gender_hint":"feminine","tags":{"season":["any"],"location_type":["indoor","school"],"energy":["low","medium"],"formality":"uniform"},"prompt_token":"modified school uniform, cardigan, loose socks, gyaru-lite school style"}
+    ],
+    "outdoor_school_rooftop": [
+      {"id":"dr024","desc":"school uniform with jacket loosely worn, tie loosened","gender_hint":"masculine","tags":{"season":["spring","summer","autumn"],"location_type":["outdoor","school","rooftop"],"energy":["low","medium"],"formality":"uniform_relaxed"},"prompt_token":"loosened school uniform, open jacket, relaxed uniform style"},
+      {"id":"dr025","desc":"school uniform skirt, blouse with sleeves rolled, casual bag","gender_hint":"feminine","tags":{"season":["spring","summer"],"location_type":["outdoor","school","rooftop"],"energy":["low","medium"],"formality":"uniform_relaxed"},"prompt_token":"school uniform blouse sleeves rolled, skirt, casual school look"}
+    ],
+    "outdoor_festival_yukata": [
+      {"id":"dr026","desc":"floral yukata with obi belt, wooden sandals (geta), small pouch","gender_hint":"feminine","tags":{"season":["summer"],"location_type":["outdoor","festival","traditional"],"energy":["low","medium"],"formality":"traditional"},"prompt_token":"floral yukata, obi belt, geta sandals, summer festival traditional"},
+      {"id":"dr027","desc":"dark indigo yukata with geometric pattern, obi, geta","gender_hint":"masculine","tags":{"season":["summer"],"location_type":["outdoor","festival","traditional"],"energy":["low","medium"],"formality":"traditional"},"prompt_token":"navy yukata, geometric pattern, obi sash, geta, traditional summer festival"},
+      {"id":"dr028","desc":"pastel yukata with floral print, hair ornament, tabi socks","gender_hint":"feminine","tags":{"season":["summer"],"location_type":["outdoor","festival","traditional"],"energy":["low","medium"],"formality":"traditional"},"prompt_token":"pastel yukata, hair kanzashi, tabi socks, japanese summer festival outfit"}
+    ],
+    "indoor_formal_elegant": [
+      {"id":"dr029","desc":"sleek off-shoulder evening dress, minimal jewelry, heels","gender_hint":"feminine","tags":{"season":["any"],"location_type":["indoor","hotel","venue"],"energy":["low","medium"],"formality":"formal"},"prompt_token":"off-shoulder evening dress, elegant jewelry, heels, formal event"},
+      {"id":"dr030","desc":"well-fitted suit, white dress shirt, tie, oxford shoes","gender_hint":"masculine","tags":{"season":["any"],"location_type":["indoor","hotel","venue"],"energy":["low","medium"],"formality":"formal"},"prompt_token":"fitted suit, white shirt, tie, oxford shoes, formal elegant"},
+      {"id":"dr031","desc":"silk slip dress with blazer overlay, strappy heels","gender_hint":"neutral","tags":{"season":["any"],"location_type":["indoor","hotel","venue"],"energy":["low","medium"],"formality":"formal"},"prompt_token":"silk slip dress, blazer, strappy heels, contemporary formal"}
+    ],
+    "outdoor_sporty_active": [
+      {"id":"dr032","desc":"athletic jacket, compression leggings, trail runners, headband","gender_hint":"neutral","tags":{"season":["spring","summer","autumn"],"location_type":["outdoor","mountain"],"energy":["high","very_high"],"formality":"sporty"},"prompt_token":"athletic jacket, compression leggings, trail shoes, sporty active"},
+      {"id":"dr033","desc":"technical wind-breaker, hiking pants, boots, cap","gender_hint":"neutral","tags":{"season":["spring","autumn"],"location_type":["outdoor","mountain","forest"],"energy":["high","very_high"],"formality":"sporty"},"prompt_token":"windbreaker, hiking pants, boots, cap, outdoor adventure outfit"}
+    ],
+    "any_streetwear": [
+      {"id":"dr034","desc":"oversized graphic hoodie, wide-leg cargo pants, chunky sneakers, crossbody","gender_hint":"neutral","tags":{"season":["any"],"location_type":["outdoor","indoor","urban"],"energy":["medium","high"],"formality":"streetwear"},"prompt_token":"oversized graphic hoodie, cargo pants, chunky sneakers, streetwear style"},
+      {"id":"dr035","desc":"cropped leather jacket, band tee, ripped jeans, platform boots","gender_hint":"neutral","tags":{"season":["autumn","spring"],"location_type":["outdoor","urban","venue"],"energy":["medium","high"],"formality":"streetwear"},"prompt_token":"leather jacket, band tee, ripped jeans, platform boots, edgy streetwear"},
+      {"id":"dr036","desc":"colour-blocked tracksuit, retro sneakers, bucket hat","gender_hint":"neutral","tags":{"season":["any"],"location_type":["outdoor","urban"],"energy":["medium","high"],"formality":"streetwear"},"prompt_token":"colour-block tracksuit, retro sneakers, bucket hat, Y2K streetwear"}
+    ]
+  },
+
+  "appearance_modifiers": {
+    "hair_styles": [
+      {"id":"ha001","token":"long straight black hair, hair down","gender_hint":"any"},
+      {"id":"ha002","token":"shoulder-length wavy brown hair","gender_hint":"any"},
+      {"id":"ha003","token":"short neat dark hair with slight undercut","gender_hint":"any"},
+      {"id":"ha004","token":"twin tails, dark hair with side-swept bangs","gender_hint":"any"},
+      {"id":"ha005","token":"messy bun, loose strands framing face","gender_hint":"any"},
+      {"id":"ha006","token":"fluffy medium-length chestnut hair","gender_hint":"any"},
+      {"id":"ha007","token":"sleek high ponytail, black hair","gender_hint":"any"},
+      {"id":"ha008","token":"soft wavy platinum blonde hair, flowing","gender_hint":"any"},
+      {"id":"ha009","token":"short tousled auburn hair","gender_hint":"any"},
+      {"id":"ha010","token":"braided pigtails, dark brown hair","gender_hint":"any"},
+      {"id":"ha011","token":"long silver-white hair, straight","gender_hint":"any"},
+      {"id":"ha012","token":"half-up half-down dark hair with hair clips","gender_hint":"any"},
+      {"id":"ha013","token":"curly mid-length dark hair","gender_hint":"any"},
+      {"id":"ha014","token":"side-swept dark fringe, medium length","gender_hint":"any"},
+      {"id":"ha015","token":"layered reddish-brown hair, collarbone length","gender_hint":"any"}
+    ],
+    "eye_styles": [
+      {"id":"ey001","token":"large expressive dark brown eyes"},
+      {"id":"ey002","token":"bright blue eyes, long lashes"},
+      {"id":"ey003","token":"gentle green eyes"},
+      {"id":"ey004","token":"sharp amber eyes"},
+      {"id":"ey005","token":"soft violet eyes, long eyelashes"},
+      {"id":"ey006","token":"deep dark eyes with subtle shine"},
+      {"id":"ey007","token":"heterochromia, one blue one brown eye"},
+      {"id":"ey008","token":"almond-shaped dark eyes, natural liner"},
+      {"id":"ey009","token":"wide innocent grey eyes"},
+      {"id":"ey010","token":"intense midnight blue eyes"}
+    ]
+  }
+}

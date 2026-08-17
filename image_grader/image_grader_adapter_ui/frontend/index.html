@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Image Grader Adapter</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand-block">
+        <p class="eyebrow">Image Grader Adapter</p>
+        <h1>Score Operations</h1>
+      </div>
+      <div class="header-metrics" aria-label="Run status">
+        <span id="total-sessions">0 sessions</span>
+        <span id="selected-count">0 selected</span>
+        <span id="model-count">0 eval models</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="control-rail" aria-label="Controls">
+        <section class="panel">
+          <div class="panel-title">
+            <p class="eyebrow">Scope</p>
+            <button id="clear-filters" class="ghost-btn" type="button">Clear</button>
+          </div>
+          <label class="field">
+            <span>Prompt template</span>
+            <select id="filter-template"></select>
+          </label>
+          <label class="field">
+            <span>Generation model</span>
+            <select id="filter-ckpt"></select>
+          </label>
+          <label class="field">
+            <span>Aspect ratio</span>
+            <select id="filter-aspect"></select>
+          </label>
+          <label class="field">
+            <span>Workflow</span>
+            <select id="filter-workflow"></select>
+          </label>
+          <label class="field">
+            <span>Run limit</span>
+            <input id="run-limit" type="number" min="1" step="1" value="12">
+          </label>
+          <button id="apply-filters" type="button">Apply</button>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">Scoring</p>
+          <h2>Eval models</h2>
+          <div id="model-checks" class="check-list"></div>
+          <h2>Preprocess</h2>
+          <div id="policy-checks" class="check-list"></div>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">Template</p>
+          <label class="field">
+            <span>Name</span>
+            <input id="template-name" value="ai_eval_v1">
+          </label>
+          <div class="split-actions">
+            <button id="save-template" type="button">Save</button>
+            <button id="reload-templates" class="secondary" type="button">Reload</button>
+          </div>
+          <label class="field">
+            <span>Saved template</span>
+            <select id="saved-templates"></select>
+          </label>
+        </section>
+      </aside>
+
+      <section class="main-column">
+        <nav class="mode-tabs" aria-label="Primary">
+          <button class="tab is-active" data-view="browse" type="button">Sessions</button>
+          <button class="tab" data-view="playground" type="button">Playground</button>
+          <button class="tab" data-view="reports" type="button">Reports</button>
+          <button class="tab" data-view="reviewer" type="button">AI Labels</button>
+        </nav>
+
+        <section id="view-browse" class="view is-active">
+          <section class="surface">
+            <div class="surface-head">
+              <div>
+                <p class="eyebrow">Sessions</p>
+                <h2>Generated Session Set</h2>
+                <p id="browse-status" class="muted">Loading sessions</p>
+              </div>
+              <div class="split-actions">
+                <button id="select-page" class="secondary" type="button">Select page</button>
+                <button id="select-all-sessions" class="secondary" type="button">Select all matching</button>
+                <button id="clear-selection" class="ghost-btn" type="button">Clear selection</button>
+              </div>
+            </div>
+            <div id="session-table" class="session-host"></div>
+            <div class="pager">
+              <button id="prev-page" class="secondary" type="button">Previous</button>
+              <span id="page-status">Page 1</span>
+              <button id="next-page" class="secondary" type="button">Next</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-playground" class="view">
+          <section class="surface">
+            <div class="surface-head">
+              <div>
+                <p class="eyebrow">Playground</p>
+                <h2>Score Preview</h2>
+              </div>
+              <button id="run-playground" type="button">Run playground</button>
+            </div>
+            <div class="playground-controls">
+              <label class="field rank-expression-field">
+                <span>Rank expression</span>
+                <textarea id="rank-expression" rows="3"></textarea>
+              </label>
+              <label class="field rank-example-field">
+                <span>Formula example</span>
+                <select id="rank-example"></select>
+              </label>
+              <label class="field rank-percent-field">
+                <span>Top/bottom %</span>
+                <input id="rank-percent" type="number" min="1" max="50" step="1" value="10">
+              </label>
+            </div>
+            <div id="rank-key-reference" class="rank-reference"></div>
+            <div id="playground-summary" class="summary-grid"></div>
+            <div id="playground-ranking" class="ranking-panel"></div>
+            <div id="playground-results" class="playground-results"></div>
+          </section>
+        </section>
+
+        <section id="view-reports" class="view">
+          <section class="surface">
+            <div class="surface-head">
+              <div>
+                <p class="eyebrow">Reports</p>
+                <h2>Score Report</h2>
+              </div>
+              <button id="run-report" type="button">Run report</button>
+            </div>
+            <div id="report-summary" class="summary-grid"></div>
+            <section class="report-section">
+              <h3>Bad-fit flags</h3>
+              <div id="flags"></div>
+            </section>
+            <section class="report-section">
+              <h3>Score pivot</h3>
+              <div id="pivot"></div>
+            </section>
+          </section>
+        </section>
+
+        <section id="view-reviewer" class="view">
+          <section class="surface">
+            <div class="surface-head">
+              <div>
+                <p class="eyebrow">AI Labels</p>
+                <h2>Reviewer Events</h2>
+              </div>
+              <div class="split-actions">
+                <button id="dry-run" class="secondary" type="button">Dry run</button>
+                <button id="write-labels" type="button">Write labels</button>
+                <button id="export-aligned" class="ghost-btn" type="button">Export aligned</button>
+              </div>
+            </div>
+            <div id="reviewer-results"></div>
+          </section>
+        </section>
+
+        <section class="status-line" aria-live="polite">
+          <p class="eyebrow">Status</p>
+          <p id="message" class="message">Starting.</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

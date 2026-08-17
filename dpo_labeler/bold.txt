@@ -1,0 +1,4 @@
+# Demo prompt bolding rules
+(?:turquoise|lavender|charcoal|burgundy|magenta|violet|purple|silver|yellow|orange|indigo|scarlet|crimson|coral|bronze|salmon|azure|green|black|white|brown|olive|cream|peach|amber|teal|blue|pink|gold|gray|grey|beige|maroon|navy|cyan|mint|lime|plum|aqua|ivory|red|tan)
+(?:non[-_\s]?binary|genderfluid|genderqueer|transgender|androgyn(?:ous|e)?|demiboy|demboy|demigirl|femboy|tomboy|agender|bigender|female|femla|woman|girl|male|man|boy|trans|enby)
+\d+(?:\.\d+)?

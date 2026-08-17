@@ -1,0 +1,46 @@
+{
+  "device": "cpu",
+  "dtype": "auto",
+  "models_root": "models/image_eval",
+  "enabled_models": [
+    "waifu_scorer_v3",
+    "aesthetic_shadow",
+    "aesthetic_anime_v2"
+  ],
+  "image_extensions": [".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tif", ".tiff"],
+  "cache": {
+    "fingerprint": "sample_sha256",
+    "sample_bytes": 1048576
+  },
+  "server": {
+    "allowed_roots": [],
+    "max_items_per_request": 256
+  },
+  "models": {
+    "waifu_scorer_v3": {
+      "kind": "clip_mlp_waifu_v3",
+      "path": "Eugeoter/waifu-scorer-v3/model.safetensors",
+      "clip_model": "models/image_eval/openai/clip-vit-large-patch14",
+      "batch_size": 64
+    },
+    "aesthetic_shadow": {
+      "kind": "transformers_vit_hq",
+      "path": "shadowlilac/aesthetic-shadow",
+      "batch_size": 4,
+      "score_label": "hq"
+    },
+    "aesthetic_anime_v2": {
+      "kind": "transformers_vit_hq",
+      "path": "minizhu/aesthetic-anime-v2",
+      "batch_size": 4,
+      "score_label": "hq"
+    },
+    "blackroot_medium": {
+      "kind": "torch_pickle_regressor",
+      "path": "Blackroot/Anime-Aesthetic-Predictor-Medium/trained_aesthetic_scorer_12_epochs_v1.pth",
+      "batch_size": 32,
+      "input_size": 224,
+      "trusted_pickle": false
+    }
+  }
+}

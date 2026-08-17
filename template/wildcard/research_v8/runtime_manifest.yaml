@@ -1,0 +1,6 @@
+set_variants:
+- sfw
+- nsfw
+notes:
+- runtime_sfw omits NSFW_Nudity so V8 SFW templates cannot pull explicit exposure tags
+- runtime_nsfw adds more adult-focused attire, action, rating, and scene choices

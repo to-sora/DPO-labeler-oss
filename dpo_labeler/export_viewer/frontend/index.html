@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Export Viewer</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Export Viewer</p>
+          <h1>Upload JSONL and browse exported pairs</h1>
+        </div>
+        <div class="topbar-meta">
+          <span class="pill" id="app-version">Loading</span>
+          <span class="pill subtle" id="import-count">0 imports</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="sidebar card">
+          <section class="sidebar-section">
+            <p class="eyebrow">Upload</p>
+            <form id="upload-form" class="stack">
+              <label class="field">
+                <span>Export JSONL file</span>
+                <input id="upload-file" type="file" accept=".jsonl,.ndjson,.txt" required>
+              </label>
+              <button type="submit" class="primary-btn" id="upload-button">Import file</button>
+            </form>
+            <p id="upload-message" class="message-text"></p>
+          </section>
+
+          <section class="sidebar-section">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Imports</p>
+                <h2>Persistent uploads</h2>
+              </div>
+              <button id="refresh-imports" class="nav-btn">Refresh</button>
+            </div>
+            <div id="imports-empty" class="empty-state">No imports yet.</div>
+            <div id="imports-list" class="imports-list"></div>
+          </section>
+        </aside>
+
+        <section class="content">
+          <section class="card import-summary" id="import-summary">
+            <div class="section-head import-head">
+              <div>
+                <p class="eyebrow">Import</p>
+                <h2 id="import-title">Select an upload to begin</h2>
+                <p class="muted" id="import-description">The viewer accepts `preference_pairs.jsonl`, `dpo_pairs.jsonl`, and `labels_latest.jsonl`.</p>
+                <p class="muted hidden" id="import-created"></p>
+              </div>
+              <div class="view-toggle hidden" id="view-toggle">
+                <button id="view-rows" class="nav-btn is-active">Rows</button>
+                <button id="view-analytics" class="nav-btn">Analytics</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="card import-warnings hidden" id="warnings-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Warnings</p>
+                <h2>Skipped rows</h2>
+              </div>
+            </div>
+            <div id="warnings-list" class="warnings-list"></div>
+          </section>
+
+          <section class="rows-toolbar hidden" id="rows-toolbar">
+            <div class="card rows-toolbar-card">
+              <div>
+                <p class="eyebrow">Rows</p>
+                <h2 id="rows-status">Page 0 · rows 0-0 of 0</h2>
+              </div>
+              <div class="toolbar-actions">
+                <label class="field compact-field">
+                  <span>Rows per page</span>
+                  <select id="page-size"></select>
+                </label>
+                <label class="field compact-field">
+                  <span>Jump to page</span>
+                  <input id="page-number" type="number" min="1" step="1" inputmode="numeric">
+                </label>
+                <button id="jump-page" class="nav-btn">Go</button>
+                <button id="prev-page" class="nav-btn">Previous</button>
+                <button id="next-page" class="nav-btn">Next</button>
+                <button id="delete-import" class="nav-btn danger">Delete import</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="rows-list" class="rows-list"></section>
+
+          <section class="rows-footer hidden" id="rows-footer">
+            <div class="card rows-footer-card">
+              <div>
+                <p class="eyebrow">Navigation</p>
+                <h2 id="rows-status-bottom">Page 0 · rows 0-0 of 0</h2>
+              </div>
+              <div class="toolbar-actions footer-actions">
+                <label class="field compact-field">
+                  <span>Jump to page</span>
+                  <input id="page-number-bottom" type="number" min="1" step="1" inputmode="numeric">
+                </label>
+                <button id="jump-page-bottom" class="nav-btn">Go</button>
+                <button id="prev-page-bottom" class="nav-btn">Previous</button>
+                <button id="next-page-bottom" class="nav-btn">Next</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="analytics-panel hidden" id="analytics-panel">
+            <div class="card analytics-summary">
+              <p class="eyebrow">Analytics</p>
+              <h2>Import dashboard</h2>
+              <p class="muted" id="analytics-message">Choose an import to view analytics.</p>
+            </div>
+            <section id="analytics-list" class="analytics-list"></section>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

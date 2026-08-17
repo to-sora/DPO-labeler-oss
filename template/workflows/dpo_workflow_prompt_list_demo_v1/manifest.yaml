@@ -1,0 +1,73 @@
+workflow_count: 2
+global_seed: 20260422
+prompt_list_root: template/prompt_lists
+prompt_list_source_dir: template/prompt_lists/prompt_list_demo_v1
+prompt_files:
+  illustration: template/prompt_lists/prompt_list_demo_v1/illustration.txt
+  anime: template/prompt_lists/prompt_list_demo_v1/anime.txt
+  pony: template/prompt_lists/prompt_list_demo_v1/pony.txt
+prompt_identifiers:
+  illustration: prompt_list_demo_v1/illustration
+  anime: prompt_list_demo_v1/anime
+  pony: prompt_list_demo_v1/pony
+prompt_line_count: 80
+realistic_prompt_fallback: prompt_list_demo_v1/illustration
+checkpoint_pools:
+  tier1_checkpoints:
+  - sdxl_animagineXL40_v4Opt.safetensors
+  - sdxl_astolfokarmixXL_256cBased.safetensors
+  - sdxl_hassakuXLIllustrious_v32.safetensors
+  - sdxl_illustrij_v20.safetensors
+  - sdxl_novaAnimeXL_ilV150.safetensors
+  - sdxl_perfectdeliberate_v60.safetensors
+  - sdxl_prefectiousXLNSFW_v10.safetensors
+  - sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+  custom_checkpoints:
+  - kohyass/keep/Animagine_XL_4.0_base/test3_ver4.ckpt
+  - kohyass/keep/Animagine_XL_4.0_base/test4_ver4-000008.ckpt
+  - kohyass/keep/Animagine_XL_4.0_base/test4_ver4.ckpt
+  - kohyass/keep/illlustion_base/path_2/test1_ver4-000014.ckpt
+  - kohyass/keep/illlustion_base/path_2/test1_ver4.ckpt
+  - kohyass/keep/illlustion_base/path_4/test1_ver4-000014.ckpt
+  - kohyass/keep/illlustion_base/path_4/test1_ver4.ckpt
+  remaining_checkpoints:
+  - sdxl_albedobaseXL_v31Large.safetensors
+  - sdxl_animagineXLV31_v31.safetensors
+  - sdxl_AnythingXL_xl.safetensors
+  - sdxl_bismuthIllustrious_v60.safetensors
+  - sdxl_bluePencilXL_v700.safetensors
+  - sdxl_boleromixIllustrious_v601.safetensors
+  - sdxl_hikariNoobVPred_124.safetensors
+  - sdxl_hosekiLustrousmix_illustNoobaiEPS11V2.safetensors
+  - sdxl_iniverseMixSFWNSFW_ponyRealGuofengV50A.safetensors
+  - sdxl_JANKUTrainedNoobaiRouwei_v60.safetensors
+  - sdxl_meichidarkmixReload_meichidarkanimv2Lust.safetensors
+  - sdxl_mritualIllustrious_v201.safetensors
+  - sdxl_novaAnimeXL_ilV140.safetensors
+  - sdxl_novaUnrealXL_v100.safetensors
+  - sdxl_ntrMIXIllustriousXL_xiii.safetensors
+  - sdxl_obsessionIllustrious_vPredV11.safetensors
+  - sdxl_pieModels_applePieV2.safetensors
+  - sdxl_pornmaster_proSDXLV8.safetensors
+  - sdxl_prefectIllustriousXL_v60.safetensors
+  - sdxl_prefectPonyXL_v6.safetensors
+  - sdxl_steincustom_V13__2.safetensors
+  - sdxl_steincustom_V13.safetensors
+  - sdxl_uncannyValley_VPredV1.safetensors
+  - sdxl_waiIllustriousSDXL_v160.safetensors
+  - sdxl_waiREALMIX_v11.safetensors
+  weight_targets:
+    tier1_total_weight: 0.3333333333333333
+    custom_total_weight: 0.3333333333333333
+    remaining_total_weight: 0.3333333333333333
+workflows:
+- task_name: prompt_list_demo_v1_same
+  output_yaml: prompt_list_demo_v1_same.yaml
+  pair_mode: same
+  prompt_generator: prompt_list_v1
+  session_count: 80
+- task_name: prompt_list_demo_v1_diff
+  output_yaml: prompt_list_demo_v1_diff.yaml
+  pair_mode: diff
+  prompt_generator: prompt_list_v1
+  session_count: 80

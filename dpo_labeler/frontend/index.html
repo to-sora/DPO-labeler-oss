@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f4efe7">
+    <title>DPO Labeler</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">DPO Labeler</p>
+          <h1>Task-Controlled Review</h1>
+        </div>
+        <div class="status-grid">
+          <div class="pill" id="status-pill">Connecting</div>
+          <div class="metric"><span id="progress-text">0 / 0 labeled</span></div>
+          <div class="metric">Pending sync <span id="pending-count">0</span></div>
+          <div class="metric">Reviewer <span id="reviewer-name">Signed out</span></div>
+        </div>
+      </header>
+
+      <nav class="nav-strip card">
+        <div class="nav-actions">
+          <button id="nav-tasks" class="nav-btn">Tasks</button>
+          <button id="nav-review" class="nav-btn">Review</button>
+          <button id="nav-export" class="nav-btn">Export</button>
+        </div>
+        <button id="logout-button" class="nav-btn ghost">Sign out</button>
+      </nav>
+
+      <main class="content">
+        <section id="auth-view" class="view card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Access</p>
+              <h2>Start Reviewer Session</h2>
+            </div>
+          </div>
+          <form id="auth-form" class="stack">
+            <label class="field">
+              <span>Invite token</span>
+              <input id="invite-token" type="password" autocomplete="current-password" required>
+            </label>
+            <label class="field">
+              <span>Reviewer username</span>
+              <input id="username" type="text" autocomplete="username" placeholder="alice" required>
+            </label>
+            <button type="submit" class="primary-btn">Start session</button>
+            <p id="auth-message" class="message-text"></p>
+          </form>
+        </section>
+
+        <section id="tasks-view" class="view">
+          <section class="card panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Task Page</p>
+                <h2>Select 1..N Tasks</h2>
+              </div>
+              <div class="task-page-actions">
+                <button id="select-all-tasks" class="nav-btn">Select all</button>
+                <button id="clear-task-selection" class="nav-btn ghost">Unselect all</button>
+                <button id="refresh-catalog" class="nav-btn">Refresh catalog</button>
+              </div>
+            </div>
+            <div class="selection-bar">
+              <div class="metric-card">
+                <span class="metric-label">Selected tasks</span>
+                <strong id="selected-task-count">0</strong>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">Selected pairs</span>
+                <strong id="selected-pair-count">0</strong>
+              </div>
+              <label class="field compact-field">
+                <span>Review mode</span>
+                <select id="review-mode">
+                  <option value="sequence">Sequence</option>
+                  <option value="random">Random</option>
+                </select>
+              </label>
+              <button id="start-review" class="primary-btn">Start review</button>
+            </div>
+            <p id="catalog-warnings" class="message-text"></p>
+          </section>
+          <section id="task-groups" class="dataset-grid"></section>
+        </section>
+
+        <section id="review-view" class="view">
+          <section class="card panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Review</p>
+                <h2 id="pair-headline">Select tasks to begin</h2>
+                <p id="pair-subheadline" class="muted">No active review session.</p>
+              </div>
+              <div class="review-tools">
+                <span id="review-mode-chip" class="pill subtle">Sequence mode</span>
+                <span id="review-subset-summary" class="pill subtle">0 tasks selected</span>
+                <button id="back-to-tasks" class="nav-btn">Reset task subset</button>
+              </div>
+            </div>
+            <dl id="pair-summary" class="summary-grid"></dl>
+            <section class="latest-label-block">
+              <p class="eyebrow section-eyebrow">Latest label</p>
+              <dl id="pair-latest-label" class="summary-grid summary-grid-compact"></dl>
+            </section>
+          </section>
+
+          <section id="pair-images" class="pair-images"></section>
+          <section id="mobile-review-stack" class="mobile-review-stack"></section>
+
+          <aside class="decision-panel card">
+            <div class="decision-grid">
+              <button class="decision-btn good-a" data-decision="a_good">A Good</button>
+              <button class="decision-btn good-b" data-decision="b_good">B Good</button>
+              <button class="decision-btn good-both" data-decision="both_good">Both Good</button>
+              <button class="decision-btn neutral" data-decision="both_bad">Both Bad</button>
+              <button class="decision-btn ghost" data-decision="skip">Skip</button>
+            </div>
+            <section class="defect-editors">
+              <section class="defect-editor">
+                <p class="eyebrow section-eyebrow">A Defects</p>
+                <div id="defects-a" class="defect-list"></div>
+              </section>
+              <section class="defect-editor defect-editor-alt">
+                <p class="eyebrow section-eyebrow">B Defects</p>
+                <div id="defects-b" class="defect-list"></div>
+              </section>
+            </section>
+            <label class="field">
+              <span>Note</span>
+              <textarea id="pair-note" rows="3" placeholder="Optional note about the current pair"></textarea>
+            </label>
+            <button id="next-pair" class="nav-btn">Skip to next loaded pair</button>
+          </aside>
+
+          <section id="share-panel" class="share-panel card" hidden>
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Download + Share</p>
+                <h2>Download Image Then Open X/Twitter</h2>
+              </div>
+            </div>
+            <div class="share-actions">
+              <button id="share-a" class="nav-btn ghost">Download + Share A</button>
+              <button id="share-b" class="nav-btn ghost">Download + Share B</button>
+            </div>
+            <p id="share-message" class="message-text" hidden></p>
+          </section>
+        </section>
+
+        <section id="export-view" class="view">
+          <section class="card panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Export</p>
+                <h2>Filtered Dataset Export</h2>
+              </div>
+            </div>
+            <div class="selection-bar">
+              <label class="field compact-field">
+                <span>Export type</span>
+                <select id="export-type">
+                  <option value="dpo-pairs">DPO pairs</option>
+                  <option value="preference-pairs">Preference pairs</option>
+                  <option value="labels-latest">Latest labels</option>
+                  <option value="label-events">Label events</option>
+                </select>
+              </label>
+              <button id="export-preview" class="nav-btn">Preview count</button>
+              <button id="export-download" class="primary-btn">Download JSONL</button>
+            </div>
+            <p id="export-message" class="message-text">Build a safe filter and download a filtered export.</p>
+          </section>
+          <section id="filter-root" class="filter-root"></section>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="zoom-dialog" class="zoom-dialog">
+      <button id="zoom-close" class="nav-btn">Close</button>
+      <img id="zoom-image" alt="Zoomed pair image">
+    </dialog>
+
+    <template id="image-card-template">
+      <article class="image-card card">
+        <div class="image-head">
+          <div>
+            <p class="eyebrow">Image <span data-slot="label"></span></p>
+          </div>
+        </div>
+        <button type="button" class="image-frame" data-slot="image-link">
+          <img data-slot="image" alt="">
+        </button>
+        <dl class="summary-grid summary-grid-compact" data-slot="facts"></dl>
+        <section class="prompt-block">
+          <p class="eyebrow section-eyebrow">Prompt</p>
+          <p class="prompt-text" data-slot="positive-prompt"></p>
+        </section>
+      </article>
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

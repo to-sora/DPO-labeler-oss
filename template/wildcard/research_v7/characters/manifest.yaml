@@ -1,0 +1,42 @@
+version: 1
+format: neutral_extended_identity
+wired_into_v5_templates: false
+wired_into_v6_templates: true
+future_family_split:
+  - illustration
+  - sdxl_anime_base
+  - pony
+packs:
+  - game_id: fgo
+    label: "Fate/Grand Order"
+    file: fgo.txt
+  - game_id: sao
+    label: "Sword Art Online"
+    file: sao.txt
+  - game_id: ggo
+    label: "Gun Gale Online"
+    file: ggo.txt
+  - game_id: zzz
+    label: "Zenless Zone Zero"
+    file: zzz.txt
+  - game_id: genshin_impact
+    label: "Genshin Impact"
+    file: genshin_impact.txt
+  - game_id: blue_archive
+    label: "Blue Archive"
+    file: blue_archive.txt
+  - game_id: nikke
+    label: "Goddess of Victory: Nikke"
+    file: nikke.txt
+  - game_id: arknights
+    label: "Arknights"
+    file: arknights.txt
+  - game_id: honkai_star_rail
+    label: "Honkai: Star Rail"
+    file: honkai_star_rail.txt
+  - game_id: azur_lane
+    label: "Azur Lane"
+    file: azur_lane.txt
+  - game_id: punishing_gray_raven
+    label: "Punishing: Gray Raven"
+    file: punishing_gray_raven.txt

@@ -1,0 +1,35 @@
+workflow_count: 4
+workflows:
+- file: all__same_base_prompt__no_upscale__both_no_lora__hybrid_compact__sfw_cross_model_trial.yaml.reference
+  task_name: v6_OLD_Mix__all__same_base_prompt__no_upscale__both_no_lora__hybrid_compact__sfw_cross_model_trial
+- file: tier1__same_base_prompt__model_upscale__both_no_lora__hybrid_compact__nsfw_trial.yaml.reference
+  task_name: v6_OLD_Mix__tier1__same_base_prompt__model_upscale__both_no_lora__hybrid_compact__nsfw_trial
+- file: tier1__same_base_prompt__model_upscale__both_no_lora__hybrid_compact__sfw_trial.yaml.reference
+  task_name: v6_OLD_Mix__tier1__same_base_prompt__model_upscale__both_no_lora__hybrid_compact__sfw_trial
+- file: tier1__same_base_prompt__no_upscale__both_no_lora__hybrid_compact__sfw_cross_model_trial.yaml.reference
+  task_name: v6_OLD_Mix__tier1__same_base_prompt__no_upscale__both_no_lora__hybrid_compact__sfw_cross_model_trial
+source_files:
+- Action_Pose.txt
+- Attire_Accessory.txt
+- Body_Appearance.txt
+- Character.txt
+- Composition_Camera.txt
+- Expression_Gaze.txt
+- NSFW_Nudity.txt
+- Object_Prop.txt
+- Other_General.txt
+- Person_Count_Identity.txt
+- Rating.txt
+- Relationship_Interaction.txt
+- Scene_Background.txt
+- Species_Fantasy_Trait.txt
+- Style_Medium.txt
+- semantic_class.txt
+empty_source_files: []
+mirrored_files: []
+template_omitted_source_files:
+- Body_Appearance.txt
+- Attire_Accessory.txt
+character_sources_enabled: true
+reference_only: true
+archive_label: v6_OLD_Mix

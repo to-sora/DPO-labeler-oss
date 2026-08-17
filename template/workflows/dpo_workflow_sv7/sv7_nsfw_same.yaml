@@ -1,0 +1,322 @@
+version: 1
+task_name: sv7_nsfw_same
+global_seed: 20260406
+session_count: 30
+images:
+- image_name: image1
+  workflow_name: SdxlEaseLoraWorkflow
+  ckpt:
+    seed_control: session_seed
+    options:
+    - value: sdxl_animagineXL40_v4Opt.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_astolfokarmixXL_256cBased.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_hassakuXLIllustrious_v32.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_illustrij_v20.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_novaAnimeXL_ilV150.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_perfectdeliberate_v60.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_prefectiousXLNSFW_v10.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+      weight: 0.041666666666666664
+    - value: kohyass/keep/Animagine_XL_4.0_base/test3_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/Animagine_XL_4.0_base/test4_ver4-000008.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/Animagine_XL_4.0_base/test4_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_2/test1_ver4-000014.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_2/test1_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_4/test1_ver4-000014.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_4/test1_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: sdxl_albedobaseXL_v31Large.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_animagineXLV31_v31.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_AnythingXL_xl.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_bismuthIllustrious_v60.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_bluePencilXL_v700.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_boleromixIllustrious_v601.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_hikariNoobVPred_124.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_hosekiLustrousmix_illustNoobaiEPS11V2.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_iniverseMixSFWNSFW_ponyRealGuofengV50A.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_JANKUTrainedNoobaiRouwei_v60.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_meichidarkmixReload_meichidarkanimv2Lust.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_mritualIllustrious_v201.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_novaAnimeXL_ilV140.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_novaUnrealXL_v100.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_ntrMIXIllustriousXL_xiii.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_obsessionIllustrious_vPredV11.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_pieModels_applePieV2.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_pornmaster_proSDXLV8.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_prefectIllustriousXL_v60.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_prefectPonyXL_v6.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_steincustom_V13__2.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_steincustom_V13.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_uncannyValley_VPredV1.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_waiIllustriousSDXL_v160.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_waiREALMIX_v11.safetensors
+      weight: 0.013333333333333332
+  lora_stack_config:
+    toggle: false
+    mode: simple
+    num_loras: 1
+    lora_1_name: None
+    lora_1_strength: 1.0
+    lora_1_model_strength: 1.0
+    lora_1_clip_strength: 1.0
+  prompt_generator:
+    name: wildcard_template_generator
+    args:
+      seed_control: session_seed
+      template: research_v7/sv7_nsfw_hybrid_compact_illustration
+      template_by_ckpt_family: &id001
+        illustration: research_v7/sv7_nsfw_hybrid_compact_illustration
+        sdxl_anime_base: research_v7/sv7_nsfw_hybrid_compact_sdxl_anime_base
+        pony: research_v7/sv7_nsfw_hybrid_compact_pony
+        realistic: research_v7/sv7_nsfw_hybrid_compact_realistic
+      template_root: ../../prompt_templates
+      wildcard_root: ../../wildcard
+      negative_prompt: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+        limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+        mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips, poorly
+        drawn face, jpeg artifacts, watermark, text, multiple views, worst quality
+      negative_prompt_by_ckpt_family: &id002
+        illustration: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+          limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+          mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips,
+          poorly drawn face, jpeg artifacts, watermark, text, multiple views, worst
+          quality
+        sdxl_anime_base: lowres, bad anatomy, bad hands, text, error, missing finger,
+          extra digits, fewer digits, cropped, worst quality, low quality, low score,
+          bad score, average score, signature, watermark, username, blurry, logo
+        pony: score_4, score_5, score_6, lowres, blurry, bad anatomy, distorted hands,
+          distorted fingers, extra fingers, watermark, text, logo, duplicate, poorly
+          drawn face, 3d
+        realistic: anime, illustration, cartoon, painting, cgi, 3d, lowres, blurry,
+          bad anatomy, bad hands, extra fingers, deformed face, asymmetrical eyes,
+          cross-eyed, extra eyes, malformed mouth, bad teeth, distorted pupils, deformed
+          nose, bad lips, waxy skin, plastic skin, watermark, text
+      random_segment_dropout_pair_chance: 0.3
+      random_segment_dropout_segment_prob: 0.1
+      seed_control_random_segment_dropout: image_index_seed
+  sample:
+    generation_seed_control: image_index_seed
+    steps:
+      seed_control: image_index_seed
+      options:
+      - value: 30
+        weight: 1.0
+      - value: 35
+        weight: 1.0
+      - value: 40
+        weight: 1.0
+    cfg:
+      seed_control: image_index_seed
+      options:
+      - value: 7.0
+        weight: 1.0
+      - value: 7.5
+        weight: 1.0
+    width:
+      seed_control: image_index_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+    height:
+      seed_control: image_index_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+- image_name: image2
+  workflow_name: SdxlEaseLoraWorkflow
+  ckpt:
+    seed_control: session_seed
+    options:
+    - value: sdxl_animagineXL40_v4Opt.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_astolfokarmixXL_256cBased.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_hassakuXLIllustrious_v32.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_illustrij_v20.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_novaAnimeXL_ilV150.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_perfectdeliberate_v60.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_prefectiousXLNSFW_v10.safetensors
+      weight: 0.041666666666666664
+    - value: sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+      weight: 0.041666666666666664
+    - value: kohyass/keep/Animagine_XL_4.0_base/test3_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/Animagine_XL_4.0_base/test4_ver4-000008.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/Animagine_XL_4.0_base/test4_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_2/test1_ver4-000014.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_2/test1_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_4/test1_ver4-000014.ckpt
+      weight: 0.047619047619047616
+    - value: kohyass/keep/illlustion_base/path_4/test1_ver4.ckpt
+      weight: 0.047619047619047616
+    - value: sdxl_albedobaseXL_v31Large.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_animagineXLV31_v31.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_AnythingXL_xl.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_bismuthIllustrious_v60.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_bluePencilXL_v700.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_boleromixIllustrious_v601.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_hikariNoobVPred_124.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_hosekiLustrousmix_illustNoobaiEPS11V2.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_iniverseMixSFWNSFW_ponyRealGuofengV50A.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_JANKUTrainedNoobaiRouwei_v60.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_meichidarkmixReload_meichidarkanimv2Lust.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_mritualIllustrious_v201.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_novaAnimeXL_ilV140.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_novaUnrealXL_v100.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_ntrMIXIllustriousXL_xiii.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_obsessionIllustrious_vPredV11.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_pieModels_applePieV2.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_pornmaster_proSDXLV8.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_prefectIllustriousXL_v60.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_prefectPonyXL_v6.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_steincustom_V13__2.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_steincustom_V13.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_uncannyValley_VPredV1.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_waiIllustriousSDXL_v160.safetensors
+      weight: 0.013333333333333332
+    - value: sdxl_waiREALMIX_v11.safetensors
+      weight: 0.013333333333333332
+  lora_stack_config:
+    toggle: false
+    mode: simple
+    num_loras: 1
+    lora_1_name: None
+    lora_1_strength: 1.0
+    lora_1_model_strength: 1.0
+    lora_1_clip_strength: 1.0
+  prompt_generator:
+    name: wildcard_template_generator
+    args:
+      seed_control: session_seed
+      template: research_v7/sv7_nsfw_hybrid_compact_illustration
+      template_by_ckpt_family: *id001
+      template_root: ../../prompt_templates
+      wildcard_root: ../../wildcard
+      negative_prompt: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+        limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+        mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips, poorly
+        drawn face, jpeg artifacts, watermark, text, multiple views, worst quality
+      negative_prompt_by_ckpt_family: *id002
+      random_segment_dropout_pair_chance: 0.3
+      random_segment_dropout_segment_prob: 0.1
+      seed_control_random_segment_dropout: image_index_seed
+  sample:
+    generation_seed_control: image_index_seed
+    steps:
+      seed_control: image_index_seed
+      options:
+      - value: 30
+        weight: 1.0
+      - value: 35
+        weight: 1.0
+      - value: 40
+        weight: 1.0
+    cfg:
+      seed_control: image_index_seed
+      options:
+      - value: 7.0
+        weight: 1.0
+      - value: 7.5
+        weight: 1.0
+    width:
+      seed_control: image_index_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+    height:
+      seed_control: image_index_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0

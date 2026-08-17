@@ -1,0 +1,287 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "sdxl_illustrij_v20.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）"
+    }
+  },
+  "2": {
+    "inputs": {
+      "value": "1 girl, fate (series) ,Altria Saber (second ascension) , fate/grand order , , white background , normal face \n, master piece ,  (masterpiece, best quality, ultra-detailed), (beautiful detailed face), masterpiece,best qualit, high detailed skin, best quality, high res, , source_ecchi, anime, soft , intricate details,aroused, bright colors"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "POS_pormpt"
+    }
+  },
+  "3": {
+    "inputs": {
+      "value": "blur, un clear, NSFW,embedding:easynegative, embedding:badhandv4, paintings, sketches, (worst quality:1.4, low quality, normal quality), lowres, normal quality, (monochrome), (grayscale), skin spots, acnes, skin blemishes, age spot, glans, nsfw, watermark, signature, text, bikini,  bad anatomy, (six_fingers), (nail_art), nail polish, blush, fruit,score_6, score_5, score_4, embedding:negativeXL_D, skinny, anorexic, furry, halo, (worst quality, low quality, sketch:1.1), error, bad anatomy, bad hands, watermark, ugly, distorted, censored, lowres, abstract, signature"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "NEG_pormpt"
+    }
+  },
+  "4": {
+    "inputs": {
+      "toggle": false,
+      "mode": "simple",
+      "num_loras": 5,
+      "lora_1_name": "Download/SDXL/DetailedEyes_V3.safetensors",
+      "lora_1_strength": 1.0000000000000002,
+      "lora_1_model_strength": 1,
+      "lora_1_clip_strength": 1,
+      "lora_2_name": "Download/SDXL/GlowingEyeWave.safetensors",
+      "lora_2_strength": 1,
+      "lora_2_model_strength": 1,
+      "lora_2_clip_strength": 1,
+      "lora_3_name": "Download/SDXL/add-detail-xl.safetensors",
+      "lora_3_strength": 1,
+      "lora_3_model_strength": 1,
+      "lora_3_clip_strength": 1,
+      "lora_4_name": "None",
+      "lora_4_strength": 2.0000000000000004,
+      "lora_4_model_strength": 1,
+      "lora_4_clip_strength": 1,
+      "lora_5_name": "None",
+      "lora_5_strength": 1,
+      "lora_5_model_strength": 1,
+      "lora_5_clip_strength": 1,
+      "lora_6_name": "None",
+      "lora_6_strength": 1,
+      "lora_6_model_strength": 1,
+      "lora_6_clip_strength": 1,
+      "lora_7_name": "None",
+      "lora_7_strength": 1,
+      "lora_7_model_strength": 1,
+      "lora_7_clip_strength": 1,
+      "lora_8_name": "None",
+      "lora_8_strength": 1,
+      "lora_8_model_strength": 1,
+      "lora_8_clip_strength": 1,
+      "lora_9_name": "None",
+      "lora_9_strength": 1,
+      "lora_9_model_strength": 1,
+      "lora_9_clip_strength": 1,
+      "lora_10_name": "None",
+      "lora_10_strength": 1,
+      "lora_10_model_strength": 1,
+      "lora_10_clip_strength": 1
+    },
+    "class_type": "easy loraStack",
+    "_meta": {
+      "title": "简易Lora堆"
+    }
+  },
+  "9": {
+    "inputs": {
+      "seed": [
+        "26",
+        0
+      ],
+      "steps": [
+        "25",
+        0
+      ],
+      "cfg": [
+        "24",
+        0
+      ],
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "18",
+        0
+      ],
+      "positive": [
+        "16",
+        0
+      ],
+      "negative": [
+        "17",
+        0
+      ],
+      "latent_image": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler-Lora"
+    }
+  },
+  "12": {
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "16": {
+    "inputs": {
+      "text": [
+        "2",
+        0
+      ],
+      "clip": [
+        "18",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码_LORA_POS"
+    }
+  },
+  "17": {
+    "inputs": {
+      "text": [
+        "3",
+        0
+      ],
+      "clip": [
+        "18",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码_LORA_NEG"
+    }
+  },
+  "18": {
+    "inputs": {
+      "lora_stack": [
+        "4",
+        0
+      ],
+      "model": [
+        "1",
+        0
+      ],
+      "optional_clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "easy loraStackApply",
+    "_meta": {
+      "title": "应用LoRA堆"
+    }
+  },
+  "19": {
+    "inputs": {
+      "filename_prefix": "DPO/image",
+      "images": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "21": {
+    "inputs": {
+      "width": [
+        "22",
+        0
+      ],
+      "height": [
+        "23",
+        0
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent图像"
+    }
+  },
+  "22": {
+    "inputs": {
+      "value": 1024
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "Width_S"
+    }
+  },
+  "23": {
+    "inputs": {
+      "value": 1024
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "Height-S"
+    }
+  },
+  "24": {
+    "inputs": {
+      "value": 7.5
+    },
+    "class_type": "PrimitiveFloat",
+    "_meta": {
+      "title": "浮点数"
+    }
+  },
+  "25": {
+    "inputs": {
+      "value": 30
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "Step_S"
+    }
+  },
+  "26": {
+    "inputs": {
+      "value": 1024
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "seed"
+    }
+  },
+  "27": {
+    "inputs": {
+      "upscale_model": [
+        "28",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "使用模型放大图像"
+    }
+  },
+  "28": {
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "加载放大模型"
+    }
+  }
+}

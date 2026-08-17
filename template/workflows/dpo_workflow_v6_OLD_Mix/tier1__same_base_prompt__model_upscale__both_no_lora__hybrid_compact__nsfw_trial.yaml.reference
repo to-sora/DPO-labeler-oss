@@ -1,0 +1,211 @@
+version: 1
+task_name: v6_OLD_Mix__tier1__same_base_prompt__model_upscale__both_no_lora__hybrid_compact__nsfw_trial
+global_seed: 20260328
+session_count: 32
+images:
+- image_name: image1
+  workflow_name: SdxlEaseLoraModelUpscaleWorkflow
+  ckpt:
+    seed_control: session_seed
+    options:
+    - value: sdxl_animagineXL40_v4Opt.safetensors
+      weight: 1.0
+    - value: sdxl_astolfokarmixXL_256cBased.safetensors
+      weight: 1.0
+    - value: sdxl_hassakuXLIllustrious_v32.safetensors
+      weight: 1.0
+    - value: sdxl_illustrij_v20.safetensors
+      weight: 1.0
+    - value: sdxl_novaAnimeXL_ilV150.safetensors
+      weight: 1.0
+    - value: sdxl_perfectdeliberate_v60.safetensors
+      weight: 1.0
+    - value: sdxl_prefectiousXLNSFW_v10.safetensors
+      weight: 1.0
+    - value: sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+      weight: 1.0
+  lora_stack_config:
+    toggle: false
+    mode: simple
+    num_loras: 1
+    lora_1_name: None
+    lora_1_strength: 1.0
+    lora_1_model_strength: 1.0
+    lora_1_clip_strength: 1.0
+  prompt_generator:
+    name: wildcard_template_generator
+    args:
+      seed_control: session_seed
+      template: research_v6_OLD_Mix/nsfw_hybrid_compact_illustration
+      template_by_ckpt_family:
+        illustration: research_v6_OLD_Mix/nsfw_hybrid_compact_illustration
+        sdxl_anime_base: research_v6_OLD_Mix/nsfw_hybrid_compact_sdxl_anime_base
+        pony: research_v6_OLD_Mix/nsfw_hybrid_compact_pony
+        realistic: research_v6_OLD_Mix/nsfw_hybrid_compact_realistic
+      template_root: ../../prompt_templates
+      wildcard_root: ../../wildcard
+      negative_prompt: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+        limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+        mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips, poorly
+        drawn face, jpeg artifacts, watermark, text, multiple views, worst quality
+      negative_prompt_by_ckpt_family:
+        illustration: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+          limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+          mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips,
+          poorly drawn face, jpeg artifacts, watermark, text, multiple views, worst
+          quality
+        sdxl_anime_base: lowres, bad anatomy, bad hands, text, error, missing finger,
+          extra digits, fewer digits, cropped, worst quality, low quality, low score,
+          bad score, average score, signature, watermark, username, blurry, logo
+        pony: score_4, score_5, score_6, lowres, blurry, bad anatomy, distorted hands,
+          distorted fingers, extra fingers, watermark, text, logo, duplicate, poorly
+          drawn face, 3d
+        realistic: anime, illustration, cartoon, painting, cgi, 3d, lowres, blurry,
+          bad anatomy, bad hands, extra fingers, deformed face, asymmetrical eyes,
+          cross-eyed, extra eyes, malformed mouth, bad teeth, distorted pupils, deformed
+          nose, bad lips, waxy skin, plastic skin, watermark, text
+  sample:
+    generation_seed_control: image_index_seed
+    steps:
+      seed_control: image_index_seed
+      options:
+      - value: 28
+        weight: 1.0
+    cfg:
+      seed_control: image_index_seed
+      options:
+      - value: 7.0
+        weight: 1.0
+      - value: 7.5
+        weight: 1.0
+    width:
+      seed_control: session_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+    height:
+      seed_control: session_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+  workflow_kwargs:
+    upscale_model_name:
+      seed_control: image_index_seed
+      options:
+      - value: 4x-UltraSharp.pth
+        weight: 1.0
+- image_name: image2
+  workflow_name: SdxlEaseLoraModelUpscaleWorkflow
+  ckpt:
+    seed_control: session_seed
+    options:
+    - value: sdxl_animagineXL40_v4Opt.safetensors
+      weight: 1.0
+    - value: sdxl_astolfokarmixXL_256cBased.safetensors
+      weight: 1.0
+    - value: sdxl_hassakuXLIllustrious_v32.safetensors
+      weight: 1.0
+    - value: sdxl_illustrij_v20.safetensors
+      weight: 1.0
+    - value: sdxl_novaAnimeXL_ilV150.safetensors
+      weight: 1.0
+    - value: sdxl_perfectdeliberate_v60.safetensors
+      weight: 1.0
+    - value: sdxl_prefectiousXLNSFW_v10.safetensors
+      weight: 1.0
+    - value: sdxl_ponyDiffusionV6XL_v6StartWithThisOne.safetensors
+      weight: 1.0
+  lora_stack_config:
+    toggle: false
+    mode: simple
+    num_loras: 1
+    lora_1_name: None
+    lora_1_strength: 1.0
+    lora_1_model_strength: 1.0
+    lora_1_clip_strength: 1.0
+  prompt_generator:
+    name: wildcard_template_generator
+    args:
+      seed_control: session_seed
+      template: research_v6_OLD_Mix/nsfw_hybrid_compact_illustration
+      template_by_ckpt_family:
+        illustration: research_v6_OLD_Mix/nsfw_hybrid_compact_illustration
+        sdxl_anime_base: research_v6_OLD_Mix/nsfw_hybrid_compact_sdxl_anime_base
+        pony: research_v6_OLD_Mix/nsfw_hybrid_compact_pony
+        realistic: research_v6_OLD_Mix/nsfw_hybrid_compact_realistic
+      template_root: ../../prompt_templates
+      wildcard_root: ../../wildcard
+      negative_prompt: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+        limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+        mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips, poorly
+        drawn face, jpeg artifacts, watermark, text, multiple views, worst quality
+      negative_prompt_by_ckpt_family:
+        illustration: lowres, blurry, bad anatomy, bad hands, extra fingers, extra
+          limbs, deformed face, asymmetrical eyes, cross-eyed, extra eyes, malformed
+          mouth, bad teeth, distorted pupils, deformed nose, uneven jaw, bad lips,
+          poorly drawn face, jpeg artifacts, watermark, text, multiple views, worst
+          quality
+        sdxl_anime_base: lowres, bad anatomy, bad hands, text, error, missing finger,
+          extra digits, fewer digits, cropped, worst quality, low quality, low score,
+          bad score, average score, signature, watermark, username, blurry, logo
+        pony: score_4, score_5, score_6, lowres, blurry, bad anatomy, distorted hands,
+          distorted fingers, extra fingers, watermark, text, logo, duplicate, poorly
+          drawn face, 3d
+        realistic: anime, illustration, cartoon, painting, cgi, 3d, lowres, blurry,
+          bad anatomy, bad hands, extra fingers, deformed face, asymmetrical eyes,
+          cross-eyed, extra eyes, malformed mouth, bad teeth, distorted pupils, deformed
+          nose, bad lips, waxy skin, plastic skin, watermark, text
+  sample:
+    generation_seed_control: image_index_seed
+    steps:
+      seed_control: image_index_seed
+      options:
+      - value: 28
+        weight: 1.0
+    cfg:
+      seed_control: image_index_seed
+      options:
+      - value: 7.0
+        weight: 1.0
+      - value: 7.5
+        weight: 1.0
+    width:
+      seed_control: session_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+    height:
+      seed_control: session_seed
+      options:
+      - value: 768
+        weight: 3.0
+      - value: 1024
+        weight: 3.0
+      - value: 1280
+        weight: 3.0
+      - value: 1536
+        weight: 2.0
+  workflow_kwargs:
+    upscale_model_name:
+      seed_control: image_index_seed
+      options:
+      - value: 4x-UltraSharp.pth
+        weight: 1.0

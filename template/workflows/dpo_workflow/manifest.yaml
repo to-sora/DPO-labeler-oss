@@ -1,0 +1,30 @@
+workflow_count: 4
+workflows:
+- task_name: v1_gpt_same
+  output_yaml: v1_gpt_same.yaml
+  pair_mode: same
+  template_short_name: gpt
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v1_gpt_diff
+  output_yaml: v1_gpt_diff.yaml
+  pair_mode: diff
+  template_short_name: gpt
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v1_qwen_same
+  output_yaml: v1_qwen_same.yaml
+  pair_mode: same
+  template_short_name: qwen
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30
+- task_name: v1_qwen_diff
+  output_yaml: v1_qwen_diff.yaml
+  pair_mode: diff
+  template_short_name: qwen
+  prompt_generator: wildcard_template_generator
+  workflow_name: SdxlEaseLoraWorkflow
+  session_count: 30

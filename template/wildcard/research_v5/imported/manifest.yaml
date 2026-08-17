@@ -1,0 +1,95 @@
+version: 1
+trial_name: imported_trial
+runtime_owned_by_v5: true
+source_policy:
+  downloaded_packs_untouched: true
+  curated_copies_only: true
+files:
+  - file: subject_count.txt
+    category: subject
+    adult_level: safe
+    sources:
+      - research_v5/adult_subject_count.txt
+  - file: identity_illustration.txt
+    category: identity
+    adult_level: moderate
+    sources:
+      - research_v5/adult_identity_illustration.txt
+  - file: identity_sdxl_anime_base.txt
+    category: identity
+    adult_level: moderate
+    sources:
+      - research_v5/adult_identity_sdxl_anime_base.txt
+  - file: identity_pony.txt
+    category: identity
+    adult_level: moderate
+    sources:
+      - research_v5/adult_identity_pony.txt
+  - file: identity_realistic.txt
+    category: identity
+    adult_level: moderate
+    sources:
+      - research_v5/adult_identity_realistic.txt
+  - file: body_style.txt
+    category: body
+    adult_level: moderate
+    sources:
+      - research_v5/adult_body_style.txt
+  - file: expression.txt
+    category: face
+    adult_level: moderate
+    sources:
+      - research_v5/adult_expression.txt
+  - file: face_detail.txt
+    category: face
+    adult_level: safe
+    sources:
+      - research_v5/adult_face_detail.txt
+  - file: pose_core.txt
+    category: pose
+    adult_level: safe
+    sources:
+      - 5770AnimeAndGameCharacters_v10/nai/Composition/Positions/positions.txt
+  - file: pose_adult.txt
+    category: pose
+    adult_level: moderate
+    sources:
+      - research_v5/adult_pose.txt
+  - file: framing.txt
+    category: camera
+    adult_level: safe
+    sources:
+      - 5770AnimeAndGameCharacters_v10/nai/Composition/Camera/framing.txt
+  - file: camera.txt
+    category: camera
+    adult_level: safe
+    sources:
+      - 5770AnimeAndGameCharacters_v10/nai/Composition/Camera/angle.txt
+      - 200WildcardsNSFWAnd_v20/wildcards/angle.txt
+  - file: location.txt
+    category: scene
+    adult_level: safe
+    sources:
+      - 5770AnimeAndGameCharacters_v10/nai/locations.txt
+  - file: lighting.txt
+    category: scene
+    adult_level: safe
+    sources:
+      - 5770AnimeAndGameCharacters_v10/nai/quality/Light.txt
+  - file: wardrobe_core.txt
+    category: wardrobe
+    adult_level: safe
+    sources:
+      - clothesWildcards_v10/Casual outfit/Casual outfit.txt
+      - clothesWildcards_v10/Knit_outfit/knit_style1.txt
+      - clothesWildcards_v10/Luxauly_outfit/luxauly look.txt
+  - file: wardrobe_adult.txt
+    category: wardrobe
+    adult_level: moderate
+    sources:
+      - research_v5/adult_wardrobe_state.txt
+  - file: surface_detail.txt
+    category: detail
+    adult_level: moderate
+    sources:
+      - research_v5/adult_surface_detail.txt

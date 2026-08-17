@@ -1,0 +1,170 @@
+raw_runtime_category_files:
+- Action_Pose.txt
+- Attire_Accessory.txt
+- Body_Appearance.txt
+- Character.txt
+- Composition_Camera.txt
+- Expression_Gaze.txt
+- NSFW_Nudity.txt
+- Object_Prop.txt
+- Other_General.txt
+- Person_Count_Identity.txt
+- Rating.txt
+- Relationship_Interaction.txt
+- Scene_Background.txt
+- Species_Fantasy_Trait.txt
+- Style_Medium.txt
+metadata_files:
+- semantic_class.txt
+- wd14_vit_v3_tags_zh_semantic.csv
+runtime_files:
+- set: sfw
+  file: Action_Pose.txt
+  source_file: Action_Pose.txt
+  raw_count: 348
+  filtered_count: 35
+- set: sfw
+  file: Attire_Accessory.txt
+  source_file: Attire_Accessory.txt
+  raw_count: 2705
+  filtered_count: 2704
+- set: sfw
+  file: Body_Appearance.txt
+  source_file: Body_Appearance.txt
+  raw_count: 626
+  filtered_count: 624
+- set: sfw
+  file: Character.txt
+  source_file: Character.txt
+  raw_count: 2751
+  filtered_count: 2750
+- set: sfw
+  file: Composition_Camera.txt
+  source_file: Composition_Camera.txt
+  raw_count: 24
+  filtered_count: 23
+- set: sfw
+  file: Expression_Gaze.txt
+  source_file: Expression_Gaze.txt
+  raw_count: 91
+  filtered_count: 91
+- set: sfw
+  file: NSFW_Nudity.txt
+  source_file: NSFW_Nudity.txt
+  raw_count: 380
+  filtered_count: 21
+- set: sfw
+  file: Object_Prop.txt
+  source_file: Object_Prop.txt
+  raw_count: 198
+  filtered_count: 198
+- set: sfw
+  file: Other_General.txt
+  source_file: Other_General.txt
+  raw_count: 3157
+  filtered_count: 3094
+- set: sfw
+  file: Person_Count_Identity.txt
+  source_file: Person_Count_Identity.txt
+  raw_count: 115
+  filtered_count: 4
+- set: sfw
+  file: Rating.txt
+  source_file: Rating.txt
+  raw_count: 4
+  filtered_count: 2
+- set: sfw
+  file: Relationship_Interaction.txt
+  source_file: Relationship_Interaction.txt
+  raw_count: 33
+  filtered_count: 9
+- set: sfw
+  file: Scene_Background.txt
+  source_file: Scene_Background.txt
+  raw_count: 151
+  filtered_count: 150
+- set: sfw
+  file: Species_Fantasy_Trait.txt
+  source_file: Species_Fantasy_Trait.txt
+  raw_count: 220
+  filtered_count: 220
+- set: sfw
+  file: Style_Medium.txt
+  source_file: Style_Medium.txt
+  raw_count: 52
+  filtered_count: 7
+- set: nsfw
+  file: Action_Pose.txt
+  source_file: Action_Pose.txt
+  raw_count: 348
+  filtered_count: 346
+- set: nsfw
+  file: Attire_Accessory.txt
+  source_file: Attire_Accessory.txt
+  raw_count: 2705
+  filtered_count: 2704
+- set: nsfw
+  file: Body_Appearance.txt
+  source_file: Body_Appearance.txt
+  raw_count: 626
+  filtered_count: 624
+- set: nsfw
+  file: Character.txt
+  source_file: Character.txt
+  raw_count: 2751
+  filtered_count: 2750
+- set: nsfw
+  file: Composition_Camera.txt
+  source_file: Composition_Camera.txt
+  raw_count: 24
+  filtered_count: 23
+- set: nsfw
+  file: Expression_Gaze.txt
+  source_file: Expression_Gaze.txt
+  raw_count: 91
+  filtered_count: 91
+- set: nsfw
+  file: NSFW_Nudity.txt
+  source_file: NSFW_Nudity.txt
+  raw_count: 380
+  filtered_count: 267
+- set: nsfw
+  file: Object_Prop.txt
+  source_file: Object_Prop.txt
+  raw_count: 198
+  filtered_count: 198
+- set: nsfw
+  file: Other_General.txt
+  source_file: Other_General.txt
+  raw_count: 3157
+  filtered_count: 3099
+- set: nsfw
+  file: Person_Count_Identity.txt
+  source_file: Person_Count_Identity.txt
+  raw_count: 115
+  filtered_count: 4
+- set: nsfw
+  file: Rating.txt
+  source_file: Rating.txt
+  raw_count: 4
+  filtered_count: 2
+- set: nsfw
+  file: Relationship_Interaction.txt
+  source_file: Relationship_Interaction.txt
+  raw_count: 33
+  filtered_count: 11
+- set: nsfw
+  file: Scene_Background.txt
+  source_file: Scene_Background.txt
+  raw_count: 151
+  filtered_count: 150
+- set: nsfw
+  file: Species_Fantasy_Trait.txt
+  source_file: Species_Fantasy_Trait.txt
+  raw_count: 220
+  filtered_count: 220
+- set: nsfw
+  file: Style_Medium.txt
+  source_file: Style_Medium.txt
+  raw_count: 52
+  filtered_count: 7

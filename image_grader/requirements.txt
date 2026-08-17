@@ -1,0 +1,7 @@
+Pillow>=10.0
+numpy>=1.26
+PyYAML>=6.0
+safetensors>=0.4
+transformers>=4.37
+tqdm>=4.66
+huggingface_hub>=0.22
