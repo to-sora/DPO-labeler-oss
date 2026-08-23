@@ -68,6 +68,12 @@ class LabelEvent:
             "note": self.note,
         }
 
+    def idempotency_payload(self) -> dict[str, Any]:
+        payload = self.to_dict()
+        payload.pop("created_at", None)
+        payload.pop("client_ts", None)
+        return payload
+
 
 class LabelStore:
     def __init__(self, state_dir: str | Path) -> None:
@@ -76,7 +82,7 @@ class LabelStore:
         self._lock = threading.Lock()
         self._events: list[LabelEvent] = []
         self._latest_by_pair_key: dict[str, LabelEvent] = {}
-        self._seen_event_ids: set[str] = set()
+        self._events_by_id: dict[str, LabelEvent] = {}
         self._version = 0
         self._load_existing_events()
 
@@ -155,14 +161,19 @@ class LabelStore:
         )
 
         with self._lock:
-            if event.event_id in self._seen_event_ids:
-                return self._latest_by_pair_key.get(event.pair_key, event)
+            existing = self._events_by_id.get(event.event_id)
+            if existing is not None:
+                if existing.idempotency_payload() != event.idempotency_payload():
+                    raise LabelEventValidationError(
+                        "event_id already exists with different label event content"
+                    )
+                return existing
             self.label_events_path.parent.mkdir(parents=True, exist_ok=True)
             with self.label_events_path.open("a", encoding="utf-8") as handle:
                 handle.write(json.dumps(event.to_dict(), ensure_ascii=False) + "\n")
                 handle.flush()
                 os.fsync(handle.fileno())
-            self._seen_event_ids.add(event.event_id)
+            self._events_by_id[event.event_id] = event
             self._events.append(event)
             self._latest_by_pair_key[event.pair_key] = event
             self._version += 1
@@ -209,7 +220,14 @@ class LabelStore:
             )
             if not event.event_id or not event.dataset_id or not event.session_id:
                 continue
-            self._seen_event_ids.add(event.event_id)
+            existing = self._events_by_id.get(event.event_id)
+            if existing is not None:
+                if existing.idempotency_payload() != event.idempotency_payload():
+                    raise ValueError(
+                        f"Conflicting duplicate event_id {event.event_id!r} in {self.label_events_path}"
+                    )
+                continue
+            self._events_by_id[event.event_id] = event
             self._events.append(event)
             self._latest_by_pair_key[event.pair_key] = event
             self._version += 1
