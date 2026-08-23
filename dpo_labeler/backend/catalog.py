@@ -341,11 +341,16 @@ class CatalogService:
         path_bases = [dataset.sessions_jsonl.parent, self.dataset_root, self.repo_root]
         normalized_images: list[SessionImage] = []
         for image_index, image in enumerate(sorted_images):
-            saved_path = resolve_existing_path(normalize_text(image.get("saved_path")), path_bases)
+            saved_path_value = normalize_text(image.get("saved_path"))
+            saved_path = resolve_existing_path(
+                saved_path_value,
+                path_bases,
+                allowed_roots=(self.dataset_root,),
+            )
             if saved_path is None:
                 return warning(
-                    "missing_image_path",
-                    detail=f"image_index={image_index} saved_path={normalize_text(image.get('saved_path'))!r}",
+                    "missing_or_disallowed_image_path",
+                    detail=f"image_index={image_index} saved_path={saved_path_value!r}",
                 )
             normalized_images.append(
                 SessionImage(
