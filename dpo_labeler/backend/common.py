@@ -74,18 +74,48 @@ def utc_timestamp() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
-def resolve_existing_path(value: str | None, candidates: Sequence[Path]) -> Path | None:
+def path_is_within_roots(path: Path, allowed_roots: Sequence[Path]) -> bool:
+    resolved_path = path.resolve()
+    for root in allowed_roots:
+        resolved_root = Path(root).resolve()
+        try:
+            resolved_path.relative_to(resolved_root)
+        except ValueError:
+            continue
+        return True
+    return False
+
+
+def resolve_existing_path(
+    value: str | None,
+    candidates: Sequence[Path],
+    *,
+    allowed_roots: Sequence[Path] | None = None,
+) -> Path | None:
     if not value:
         return None
+
+    roots = tuple(Path(root).resolve() for root in (allowed_roots or candidates))
+    if not roots:
+        return None
+
     raw = Path(value)
-    if raw.is_absolute() and raw.exists():
-        return raw
-    for base in candidates:
-        candidate = (base / raw).resolve()
-        if candidate.exists():
-            return candidate
-    if raw.exists():
-        return raw.resolve()
+    paths_to_check: list[Path] = []
+    if raw.is_absolute():
+        paths_to_check.append(raw)
+    else:
+        paths_to_check.extend(base / raw for base in candidates)
+        paths_to_check.append(raw)
+
+    for candidate in paths_to_check:
+        try:
+            resolved = candidate.resolve()
+        except (OSError, RuntimeError):
+            continue
+        if not resolved.exists():
+            continue
+        if path_is_within_roots(resolved, roots):
+            return resolved
     return None
 
 

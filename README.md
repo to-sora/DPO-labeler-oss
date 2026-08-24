@@ -1,5 +1,7 @@
 # Comfy DPO Workflow Toolkit
 
+**English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
+
 A standalone toolkit for compiling prompt tasks, scheduling ComfyUI workflows,
 collecting paired-image sessions, reviewing DPO preferences, and optionally
 grading generated images.
@@ -149,6 +151,30 @@ score["native"]["waifu_scorer_v3"]
 It also supports restricted arithmetic, averages, minima/maxima, and
 percentiles for top/bottom ranking. It does not execute arbitrary Python.
 
+### Image-grader filesystem safety
+
+When the image-grader HTTP API is enabled, always configure
+`server.allowed_roots` with the directories that the grader is permitted to
+read. Do **not** intentionally leave `allowed_roots` empty: an empty list is a
+broad/fail-open configuration in this release and therefore must not be used as
+a security boundary.
+
+`bash install.sh` writes `image_grader/config.local.json` with the configured
+dataset root in `server.allowed_roots`. If you create or edit the grader config
+manually, use an explicit configuration such as:
+
+```json
+{
+  "server": {
+    "allowed_roots": ["/absolute/path/to/your/dataset"]
+  }
+}
+```
+
+Use the narrowest roots practical, keep the grader on localhost or a trusted
+private network, and never use filesystem root (`/`) or a broad home directory
+as an allowed root merely for convenience.
+
 See [Image Grader](docs/image_grader.md) for model layouts, CPU/GPU setup,
 formula syntax, examples, and model limitations.
 
@@ -213,6 +239,9 @@ installer, browser UI, and CPU grader evidence.
 
 - Keep all HTTP services on localhost or a trusted VPN. They are not hardened
   public web services and do not provide TLS termination.
+- The labeler accepts image paths only when their resolved target remains inside
+  the configured dataset root; paths or symlinks escaping that root are
+  rejected from the catalog.
 - Review and grader interfaces can expose dataset, task, session, checkpoint,
   seed, and run metadata. Do not treat the current UI as strict blind review.
 - Long checkpoint metadata can still cause horizontal overflow near a 913 px
