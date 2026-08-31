@@ -142,6 +142,7 @@ if [[ "${START_LABELER:-1}" == "1" ]]; then
   start_service "labeler" "$LOGS_DIR/labeler.log" \
     "$PYTHON_BIN" -m dpo_labeler.backend.server \
       --dataset-root "$DATASET_ROOT" \
+      --image-root "$IMAGE_ROOT" \
       --state-dir "$LABELER_STATE_DIR" \
       --invite-token "$INVITE_TOKEN" \
       --review-round-seed "$REVIEW_ROUND_SEED" \

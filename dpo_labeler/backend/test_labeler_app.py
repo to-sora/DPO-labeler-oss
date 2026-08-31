@@ -115,11 +115,34 @@ class DpoLabelerAppTest(unittest.TestCase):
         catalog = app.get_catalog()
         self.assertEqual(catalog["catalog_version"], app.catalog_service.get_snapshot().catalog_version)
         self.assertEqual(len(catalog["warnings"]), 1)
-        self.assertEqual(catalog["warnings"][0]["reason"], "missing_image_path")
+        self.assertEqual(catalog["warnings"][0]["reason"], "missing_or_disallowed_image_path")
         task = catalog["datasets"][0]["tasks"][0]
         self.assertEqual(task["total_pairs"], 1)
         self.assertEqual(task["invalid_pair_count"], 1)
         self.assertEqual(task["unlabeled_pairs"], 1)
+
+    def test_catalog_rejects_image_root_that_was_not_configured(self) -> None:
+        image_a = self.root / "images" / "outside_a.png"
+        image_b = self.root / "images" / "outside_b.png"
+        _write_png(image_a, "red")
+        _write_png(image_b, "blue")
+        self._write_sessions(
+            self.sessions_path,
+            [_session_row("session-outside", (image_a, image_b), session_index=0)],
+        )
+        app = DpoLabelerApp(
+            dataset_root=self.dataset_root,
+            state_dir=self.state_dir,
+            invite_token="invite-123",
+            session_secret="secret-123",
+            rescan_seconds=3600,
+        )
+        self.addCleanup(app.close)
+
+        catalog = app.get_catalog()
+
+        self.assertEqual(catalog["datasets"][0]["tasks"][0]["total_pairs"], 0)
+        self.assertEqual(catalog["warnings"][0]["reason"], "missing_or_disallowed_image_path")
 
     def test_session_review_and_dpo_export(self) -> None:
         image_a = self.root / "images" / "pair_a.png"
@@ -594,6 +617,7 @@ class DpoLabelerAppTest(unittest.TestCase):
                     dataset_root=self.dataset_root,
                     state_dir=self.state_dir,
                     invite_token="invite-123",
+                    image_roots=[self.root / "images"],
                     session_secret="secret-123",
                     rescan_seconds=3600,
                 )
@@ -838,6 +862,7 @@ class DpoLabelerAppTest(unittest.TestCase):
             dataset_root=self.dataset_root,
             state_dir=self.state_dir,
             invite_token="invite-123",
+            image_roots=[self.root / "images"],
             session_secret="secret-123",
             rescan_seconds=30,
             review_round_seed="round-seed-1",

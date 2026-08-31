@@ -6,7 +6,7 @@ import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from .common import CatalogError, load_jsonl, normalize_text, resolve_existing_path, stable_hex, to_jsonable
 
@@ -129,9 +129,13 @@ class CatalogService:
         rescan_seconds: int = 30,
         review_round_seed: str = "default-round-v1",
         exclude_dirs: "list[str] | tuple[str, ...] | None" = None,
+        image_roots: Sequence[str | Path] | None = None,
     ) -> None:
         self.dataset_root = Path(dataset_root).resolve()
         self.repo_root = Path(repo_root).resolve()
+        allowed_image_roots = [self.dataset_root]
+        allowed_image_roots.extend(Path(root).expanduser().resolve() for root in image_roots or ())
+        self.image_roots = tuple(dict.fromkeys(allowed_image_roots))
         self.rescan_seconds = max(int(rescan_seconds), 5)
         self.review_round_seed = normalize_text(review_round_seed) or "default-round-v1"
         self.exclude_dirs: tuple[str, ...] = tuple(exclude_dirs or ())
@@ -338,14 +342,14 @@ class CatalogService:
             return warning("invalid_pair_size", detail="session must contain exactly 2 images")
 
         sorted_images = sorted(images, key=lambda image: (image.get("image_index", 0), image.get("image_name", "")))
-        path_bases = [dataset.sessions_jsonl.parent, self.dataset_root, self.repo_root]
+        path_bases = [dataset.sessions_jsonl.parent, *self.image_roots, self.repo_root]
         normalized_images: list[SessionImage] = []
         for image_index, image in enumerate(sorted_images):
             saved_path_value = normalize_text(image.get("saved_path"))
             saved_path = resolve_existing_path(
                 saved_path_value,
                 path_bases,
-                allowed_roots=(self.dataset_root,),
+                allowed_roots=self.image_roots,
             )
             if saved_path is None:
                 return warning(

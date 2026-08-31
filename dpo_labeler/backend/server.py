@@ -269,6 +269,13 @@ class LabelerRequestHandler(BaseHTTPRequestHandler):
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Serve the mobile-first DPO labeling web app.")
     parser.add_argument("--dataset-root", required=True, help="Root directory to recursively scan for sessions.jsonl files")
+    parser.add_argument(
+        "--image-root",
+        action="append",
+        default=[],
+        dest="image_roots",
+        help="Allowed root containing session images (repeatable)",
+    )
     parser.add_argument("--state-dir", required=True, help="Directory for label events, preview cache, and exports")
     parser.add_argument("--frontend-dir", default=None, help="Override frontend static asset directory")
     parser.add_argument("--host", default="127.0.0.1", help="Host to bind")
@@ -302,6 +309,7 @@ def main() -> None:
         dataset_root=args.dataset_root,
         state_dir=args.state_dir,
         invite_token=args.invite_token,
+        image_roots=args.image_roots,
         session_secret=args.session_secret,
         preview_max_width=args.preview_max_width,
         rescan_seconds=args.rescan_seconds,

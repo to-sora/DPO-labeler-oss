@@ -7,7 +7,7 @@ import json
 import threading
 from html import escape
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Mapping, Sequence
 from urllib.parse import urlencode
 
 from PIL import Image, ImageOps
@@ -41,6 +41,7 @@ class DpoLabelerApp:
         x_access_token: str | None = None,
         x_access_token_secret: str | None = None,
         exclude_dirs: "list[str] | tuple[str, ...] | None" = None,
+        image_roots: Sequence[str | Path] | None = None,
     ) -> None:
         self.state_dir = Path(state_dir).resolve()
         self.preview_max_width = preview_max_width
@@ -51,6 +52,7 @@ class DpoLabelerApp:
         self.catalog_service = CatalogService(
             dataset_root=dataset_root,
             repo_root=Path.cwd().resolve(),
+            image_roots=image_roots,
             rescan_seconds=rescan_seconds,
             review_round_seed=review_round_seed,
             exclude_dirs=exclude_dirs,

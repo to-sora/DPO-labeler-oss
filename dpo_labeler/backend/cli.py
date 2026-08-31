@@ -25,6 +25,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 def _add_shared_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--dataset-root", required=True, help="Root directory to recursively scan for sessions.jsonl files")
+    parser.add_argument(
+        "--image-root",
+        action="append",
+        default=[],
+        dest="image_roots",
+        help="Allowed root containing session images (repeatable)",
+    )
     parser.add_argument("--state-dir", required=True, help="Directory for labeler state")
     parser.add_argument("--review-round-seed", default="default-round-v1", help="Stable seed for deterministic random review order")
     parser.add_argument(
@@ -44,6 +51,7 @@ def main() -> None:
         dataset_root=args.dataset_root,
         state_dir=args.state_dir,
         invite_token="cli-disabled",
+        image_roots=args.image_roots,
         session_secret="cli-disabled",
         rescan_seconds=3600,
         review_round_seed=args.review_round_seed,

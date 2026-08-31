@@ -61,6 +61,24 @@ def _pair(root: Path) -> PairRecord:
 
 
 class SavedPathContainmentTests(unittest.TestCase):
+    def test_resolve_existing_path_accepts_separate_allowed_image_root(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            base = Path(tmpdir)
+            dataset_root = base / "dataset"
+            image_root = base / "images"
+            dataset_root.mkdir()
+            image_root.mkdir()
+            image = image_root / "image.png"
+            image.write_bytes(b"image")
+
+            resolved = resolve_existing_path(
+                str(image),
+                [dataset_root, image_root],
+                allowed_roots=[dataset_root, image_root],
+            )
+
+            self.assertEqual(resolved, image.resolve())
+
     def test_resolve_existing_path_accepts_file_inside_allowed_root(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir) / "dataset"
