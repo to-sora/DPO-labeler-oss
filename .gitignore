@@ -48,3 +48,12 @@ run_results.jsonl
 # OS/editor noise
 .DS_Store
 .ipynb_checkpoints/
+
+# Local tools, handover material and private development notes
+.local-tool/
+.local-dep/
+**/.local-tool-app/
+fan-in/
+fan-out/
+dev-log/
+dpo_labeler/data/

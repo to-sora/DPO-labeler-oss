@@ -1,5 +1,5 @@
-const STATIC_CACHE = "dpo-labeler-static-v8";
-const DATA_CACHE = "dpo-labeler-data-v8";
+const STATIC_CACHE = "dpo-labeler-static";
+const DATA_CACHE = "dpo-labeler-data";
 const STATIC_ASSETS = [
   "/",
   "/index.html",
@@ -9,6 +9,15 @@ const STATIC_ASSETS = [
   "/api.mjs",
   "/storage.mjs",
   "/manifest.webmanifest",
+  "/imported/view.html",
+  "/imported/style.css",
+  "/imported/layout.css",
+  "/imported/boot.mjs",
+  "/imported/common.mjs",
+  "/imported/catalog.mjs",
+  "/imported/actions.mjs",
+  "/imported/render.mjs",
+  "/imported/images.mjs",
 ];
 
 self.addEventListener("install", (event) => {
@@ -33,6 +42,10 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) {
     return;
   }
+  if (url.pathname.startsWith("/api/v1/imported/") || url.pathname.startsWith("/media/imported/")) {
+    event.respondWith(fetch(request, {cache: "no-store"}));
+    return;
+  }
 
   if (url.pathname.startsWith("/media/preview/")) {
     event.respondWith(staleWhileRevalidate(request));
@@ -46,7 +59,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(networkFirst(request));
     return;
   }
-  event.respondWith(cacheFirst(request, STATIC_CACHE));
+  event.respondWith(networkFirst(request, STATIC_CACHE));
 });
 
 async function cacheFirst(request, cacheName) {
@@ -62,8 +75,8 @@ async function cacheFirst(request, cacheName) {
   return response;
 }
 
-async function networkFirst(request) {
-  const cache = await caches.open(DATA_CACHE);
+async function networkFirst(request, cacheName = DATA_CACHE) {
+  const cache = await caches.open(cacheName);
   try {
     const response = await fetch(request);
     if (response.ok) {

@@ -1,0 +1,5 @@
+port: 8787
+purpose: DPO and imported-image labeling over self-signed HTTPS
+policy: public
+enable_whitelist: false
+whitelist: ''
