@@ -6,7 +6,7 @@ from pathlib import Path
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from .browser import firefox, find, screenshot, wait
+from .browser import firefox, find, login, screenshot, wait
 
 
 def main() -> None:
@@ -16,9 +16,8 @@ def main() -> None:
     task_id = (root / "task-id.txt").read_text()
     driver = firefox(exports)
     try:
-        driver.get("https://127.0.0.1:18789/")
-        wait(driver, lambda d: d.find_elements(By.ID, "nav-imported"))
-        find(driver, "nav-imported").click()
+        driver.get("http://127.0.0.1:18789/")
+        login(driver)
         wait(driver, lambda d: find(d, "import-task").is_enabled())
         Select(find(driver, "import-task")).select_by_value(task_id)
         wait(driver, lambda d: find(d, "import-complete").is_displayed())

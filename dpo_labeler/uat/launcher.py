@@ -1,6 +1,5 @@
 import json
 import socket
-import ssl
 import subprocess
 import sys
 import time
@@ -22,9 +21,10 @@ def main() -> None:
         service = subprocess.Popen(args + ["--force"], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
         deadline = time.monotonic() + 15
         while time.monotonic() < deadline:
+            if service.poll() is not None:
+                raise AssertionError(f"Launcher exited during startup: {service.stderr.read()}")
             try:
-                with urllib.request.urlopen(f"https://127.0.0.1:{port}/api/v1/imported/tasks",
-                       context=ssl._create_unverified_context(), timeout=1) as response:
+                with urllib.request.urlopen(f"http://127.0.0.1:{port}/api/v1/config", timeout=1) as response:
                     assert json.load(response)["ok"]
                     break
             except (OSError, TimeoutError):

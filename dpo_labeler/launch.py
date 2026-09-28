@@ -36,7 +36,8 @@ def main() -> None:
     signal.signal(signal.SIGINT, stop)
     signal.signal(signal.SIGTERM, stop)
     try:
-        raise SystemExit(process.wait())
+        status = process.wait()
+        raise SystemExit(0 if status in (-signal.SIGINT, -signal.SIGTERM) else status)
     finally:
         if process.poll() is None:
             stop()

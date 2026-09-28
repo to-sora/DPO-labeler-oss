@@ -32,6 +32,19 @@ def wait(driver, predicate):
     return WebDriverWait(driver, 25).until(predicate)
 
 
+def login(driver, reviewer: str = "Firefox-reviewer", token: str = "change-me") -> None:
+    wait(driver, lambda d: d.find_elements(By.ID, "nav-imported"))
+    if not find(driver, "imported-view").is_displayed():
+        wait(driver, lambda d: find(d, "invite-token").is_displayed())
+        find(driver, "invite-token").clear()
+        find(driver, "invite-token").send_keys(token)
+        find(driver, "username").clear()
+        find(driver, "username").send_keys(reviewer)
+        driver.find_element(By.CSS_SELECTOR, '#auth-form button[type="submit"]').click()
+    wait(driver, lambda d: find(d, "imported-view").is_displayed())
+    wait(driver, lambda d: find(d, "import-task").is_enabled())
+
+
 def api(driver, path: str) -> dict:
     return driver.execute_async_script("""
       const done = arguments[arguments.length - 1];

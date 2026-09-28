@@ -13,6 +13,19 @@ export function filterTasks() {
   tasks.forEach(t => $('task').add(new Option(
     `${t.task_name} · ${t.character_name} (${t.image_count} images)`, t.task_id)));
   if (tasks.some(t => t.task_id === current)) $('task').value = current;
+  $('task-count').textContent = filter
+    ? `${tasks.length} of ${model.tasks.length} imported tasks match`
+    : `${tasks.length} imported tasks`;
+  $('task-list').replaceChildren();
+  tasks.forEach(t => {
+    const button = element('button', undefined, 'nav-btn import-task-button');
+    button.type = 'button';
+    button.dataset.taskId = t.task_id;
+    button.disabled = model.busy;
+    button.append(element('strong', t.task_name),
+      element('span', `${t.image_count} images · ${t.dimensions.join(' · ')}`));
+    $('task-list').append(button);
+  });
 }
 
 export async function refreshTasks() {

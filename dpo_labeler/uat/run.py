@@ -12,7 +12,7 @@ def main() -> None:
     output = Path("fan-out/imported-image-uat")
     driver = firefox(output)
     try:
-        task_id = open_import(driver, "https://127.0.0.1:18789/", output / "import.yaml")
+        task_id = open_import(driver, "http://127.0.0.1:18789/", output / "import.yaml")
         (output / "task-id.txt").write_text(task_id)
         driver.find_element(By.CSS_SELECTOR, '#import-manage > summary').click()
         find(driver, "import-filter").send_keys("no-such-character")

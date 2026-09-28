@@ -1,5 +1,6 @@
 from urllib.parse import unquote, urlparse
 
+from ..common import AuthenticationError
 from .events import Conflict
 
 
@@ -7,6 +8,7 @@ def dispatch(handler, method: str) -> None:
     path = urlparse(handler.path).path
     parts = [unquote(p) for p in path.strip("/").split("/")]
     try:
+        handler.app.auth_service.require_session(handler.headers.get("Cookie"))
         service = handler.imported
         if parts[:2] == ["media", "imported"] and len(parts) == 4:
             handler._send_file(service.image(parts[2], int(parts[3])))
@@ -28,6 +30,8 @@ def dispatch(handler, method: str) -> None:
         else:
             raise KeyError(path)
         handler._send_json(200, {"ok": True, "data": data, "error": None})
+    except AuthenticationError as exc:
+        handler._send_error_json(401, str(exc))
     except Conflict as exc:
         handler._send_error_json(409, str(exc))
     except (ValueError, TypeError) as exc:

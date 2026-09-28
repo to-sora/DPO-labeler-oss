@@ -18,12 +18,6 @@ class ImportedRequestHandler(LabelerRequestHandler):
         else:
             super().do_POST()
 
-    def _read_json_body(self) -> dict:
-        payload = super()._read_json_body()
-        if urlparse(self.path).path == "/api/v1/session/start":
-            payload["invite_token"] = self.app.auth_service.invite_token
-        return payload
-
     def _serve_frontend(self, path: str) -> None:
         if path in ("/", "/index.html"):
             html = (self.frontend_dir / "index.html").read_text(encoding="utf-8")

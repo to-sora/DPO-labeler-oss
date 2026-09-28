@@ -18,6 +18,10 @@
     <label class="field">Reviewer name
       <input id="import-reviewer" autocomplete="username" placeholder="Your name">
     </label>
+    <div class="import-task-catalog">
+      <p id="import-task-count" role="status">Loading imported tasks…</p>
+      <div id="import-task-list" role="group" aria-label="Imported tasks"></div>
+    </div>
     <details class="import-upload">
       <summary>Import a new YAML task</summary>
       <p>Images must be readable on this server. Each import starts a separate task.</p>

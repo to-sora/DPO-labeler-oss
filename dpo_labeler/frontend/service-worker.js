@@ -1,5 +1,5 @@
-const STATIC_CACHE = "dpo-labeler-static";
-const DATA_CACHE = "dpo-labeler-data";
+const STATIC_CACHE = "dpo-labeler-static-v10";
+const DATA_CACHE = "dpo-labeler-data-v8";
 const STATIC_ASSETS = [
   "/",
   "/index.html",
@@ -21,7 +21,9 @@ const STATIC_ASSETS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.addAll(STATIC_ASSETS)));
+  event.waitUntil(caches.open(STATIC_CACHE).then((cache) =>
+    cache.addAll(STATIC_ASSETS.map((path) => new Request(path, {cache: "reload"})))
+  ));
   self.skipWaiting();
 });
 
@@ -59,7 +61,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(networkFirst(request));
     return;
   }
-  event.respondWith(networkFirst(request, STATIC_CACHE));
+  event.respondWith(cacheFirst(request, STATIC_CACHE));
 });
 
 async function cacheFirst(request, cacheName) {
@@ -75,8 +77,8 @@ async function cacheFirst(request, cacheName) {
   return response;
 }
 
-async function networkFirst(request, cacheName = DATA_CACHE) {
-  const cache = await caches.open(cacheName);
+async function networkFirst(request) {
+  const cache = await caches.open(DATA_CACHE);
   try {
     const response = await fetch(request);
     if (response.ok) {

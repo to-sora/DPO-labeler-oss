@@ -3,5 +3,5 @@ Imported persistence and concurrent submissions: real SQLite and threads; nothin
 Imported ranking and exports: real graphs, scheduler, certificates and ZIP; human choices supplied by consistent test rankings. / 排名與匯出：實際圖、排程、證書、ZIP；人類選擇由測試排序提供。
 Existing labeler and viewer: existing unittest suites; existing mocks retained. / 原有標註器與檢視器：執行既有 unittest，保留原有模擬。
 Frontend helpers: Node built-in runner; DOM-free helpers only. / 前端輔助：Node 內建測試器，僅不依賴 DOM 的函式。
-Firefox UAT: real self-signed HTTPS UI and external demo images; no ComfyUI connection. / Firefox 驗收：實際自簽 HTTPS 介面及外部示範圖片，未連接 ComfyUI。
-HTTP concurrency: real HTTPS, SQLite and eight clients; one browser response-loss fault is injected separately. / HTTP 同時提交：實際 HTTPS、SQLite 及八個客戶端；另以瀏覽器注入回覆遺失故障。
+Firefox UAT: real HTTP UI with invite-token sessions and external demo images; no ComfyUI connection. / Firefox 驗收：實際 HTTP 介面、邀請碼登入及外部示範圖片，未連接 ComfyUI。
+HTTP concurrency: real HTTP, SQLite and eight clients; one browser response-loss fault is injected separately. / HTTP 同時提交：實際 HTTP、SQLite 及八個客戶端；另以瀏覽器注入回覆遺失故障。

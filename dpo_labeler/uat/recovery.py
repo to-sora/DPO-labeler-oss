@@ -4,7 +4,7 @@ from pathlib import Path
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from .browser import api, firefox, find, screenshot, wait
+from .browser import api, firefox, find, login, screenshot, wait
 
 
 def main() -> None:
@@ -13,12 +13,9 @@ def main() -> None:
     driver = firefox(root)
     try:
         def open_task() -> None:
-            driver.get("https://127.0.0.1:18789/")
-            wait(driver, lambda d: d.find_elements(By.ID, "nav-imported"))
-            find(driver, "nav-imported").click()
+            driver.get("http://127.0.0.1:18789/")
+            login(driver, reviewer="recovery-reviewer")
             wait(driver, lambda d: find(d, "import-task").is_enabled())
-            find(driver, "import-reviewer").clear()
-            find(driver, "import-reviewer").send_keys("recovery-reviewer")
             Select(find(driver, "import-task")).select_by_value(task_id)
             wait(driver, lambda d: d.find_elements(By.CSS_SELECTOR, ".import-choice"))
         open_task()

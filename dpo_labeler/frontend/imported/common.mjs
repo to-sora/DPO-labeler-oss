@@ -17,6 +17,7 @@ export async function request(path = '', body) {
     signal: AbortSignal.timeout(120000),
   });
   if (!response.ok) {
+    if (response.status === 401) document.dispatchEvent(new Event('dpo-labeler-auth-required'));
     const payload = await response.json();
     const error = new Error(payload.error || 'Request failed');
     error.status = response.status;

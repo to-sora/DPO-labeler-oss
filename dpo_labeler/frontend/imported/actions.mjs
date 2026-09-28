@@ -1,3 +1,4 @@
+import {getSession} from '../app.js';
 import {$, data, request, model, message, canSave} from './common.mjs';
 import {pendingKey, refreshTasks, loadTask} from './catalog.mjs';
 
@@ -5,13 +6,17 @@ export async function guarded(action) {
   if (model.busy) return;
   model.busy = true;
   const ids = ['create', 'refresh', 'task', 'file', 'export'];
-  ids.forEach(id => $(id).disabled = true);
+  const disableControls = disabled => {
+    ids.forEach(id => $(id).disabled = disabled);
+    $('task-list').querySelectorAll('button').forEach(button => button.disabled = disabled);
+  };
+  disableControls(true);
   canSave();
   try { await action(); }
   catch (error) { message(error.message, true); }
   finally {
     model.busy = false;
-    ids.forEach(id => $(id).disabled = false);
+    disableControls(false);
     canSave();
   }
 }
@@ -28,11 +33,7 @@ export async function importTask() {
 
 export async function save() {
   const id = model.task.task_id;
-  let client = localStorage.getItem('imported-client');
-  if (!client) {
-    client = crypto.randomUUID();
-    localStorage.setItem('imported-client', client);
-  }
+  const client = getSession().client_instance_id;
   const key = pendingKey(id);
   const payload = JSON.parse(localStorage.getItem(key) || 'null') || {
     comparison_id: model.task.pair.comparison_id,

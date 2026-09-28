@@ -1,4 +1,5 @@
-import {$, element, message, canSave} from './common.mjs';
+import {getSession} from '../app.js';
+import {$, element, model, canSave} from './common.mjs';
 import {refreshTasks, filterTasks, loadTask} from './catalog.mjs';
 import {guarded, importTask, save, download} from './actions.mjs';
 
@@ -15,6 +16,7 @@ document.querySelector('.nav-actions').append(button);
 const show = () => {
   document.body.classList.add('import-mode');
   root.hidden = false;
+  $('manage').open = true;
   headline.textContent = 'External image review';
   button.textContent = 'Standard review';
   guarded(refreshTasks);
@@ -39,12 +41,28 @@ const open = element('button', 'Select imported tasks', 'nav-btn');
 open.onclick = show;
 entry.append(count, open);
 document.getElementById('tasks-view').prepend(entry);
-const token = document.getElementById('invite-token');
-token.required = false;
-token.closest('label').style.display = 'none';
-$('reviewer').value = localStorage.getItem('imported-reviewer') || '';
+let signedIn = false;
+function updateSession(session) {
+  button.hidden = !session;
+  if (!session) {
+    signedIn = false;
+    leave();
+    model.task = null;
+    model.tasks = [];
+    $('work').hidden = true;
+    $('images').replaceChildren();
+    $('task-list').replaceChildren();
+    $('task').replaceChildren(new Option('Select a task', ''));
+    document.body.classList.remove('import-task-active');
+    canSave();
+  } else if (!signedIn) {
+    signedIn = true;
+    $('reviewer').value = session.reviewer_username;
+    show();
+  }
+}
 $('reviewer').oninput = () => {
-  localStorage.setItem('imported-reviewer', $('reviewer').value); canSave();
+  canSave();
 };
 $('file').onchange = () => guarded(async () => {
   if ($('file').files[0]) $('yaml').value = await $('file').files[0].text();
@@ -55,7 +73,15 @@ $('refresh').onclick = () => guarded(async () => {
 });
 $('filter').oninput = filterTasks;
 $('task').onchange = () => guarded(() => loadTask($('task').value));
+$('task-list').onclick = event => {
+  const button = event.target.closest('button[data-task-id]');
+  if (button) guarded(async () => {
+    $('task').value = button.dataset.taskId;
+    await loadTask(button.dataset.taskId);
+  });
+};
 $('vote').onsubmit = event => { event.preventDefault(); guarded(save); };
 $('export').onclick = () => guarded(download);
 $('close').onclick = () => $('zoom').close();
-refreshTasks().catch(error => message(error.message, true));
+document.addEventListener('dpo-labeler-session', event => updateSession(event.detail));
+updateSession(getSession());

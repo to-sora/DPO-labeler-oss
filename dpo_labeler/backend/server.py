@@ -302,9 +302,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    from .imported.handler import ImportedRequestHandler
+    from .imported.service import ImportedTasks
+
     parser = build_arg_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     app = DpoLabelerApp(
         dataset_root=args.dataset_root,
         state_dir=args.state_dir,
@@ -323,7 +326,10 @@ def main() -> None:
         exclude_dirs=args.exclude_dirs,
     )
     frontend_dir = Path(args.frontend_dir).resolve() if args.frontend_dir else (Path(__file__).resolve().parents[1] / "frontend")
-    handler = type("ConfiguredLabelerRequestHandler", (LabelerRequestHandler,), {"app": app, "frontend_dir": frontend_dir})
+    handler = type("ConfiguredLabelerRequestHandler", (ImportedRequestHandler,), {
+        "app": app, "frontend_dir": frontend_dir,
+        "imported": ImportedTasks(Path(args.state_dir)),
+    })
     class LabelerThreadingHTTPServer(ThreadingHTTPServer):
         daemon_threads = True
 

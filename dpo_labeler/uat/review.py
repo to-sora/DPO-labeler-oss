@@ -4,19 +4,19 @@ from pathlib import Path
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from .browser import api, find, screenshot, wait
+from .browser import api, find, login, screenshot, wait
 
 
 def open_import(driver, base: str, yaml_path: Path) -> str:
     driver.get(base)
-    wait(driver, lambda d: d.find_elements(By.ID, "nav-imported"))
-    find(driver, "nav-imported").click()
-    find(driver, "import-reviewer").send_keys("Firefox-reviewer")
+    login(driver)
+    wait(driver, lambda d: find(d, "import-file").is_enabled())
     driver.find_element(By.CSS_SELECTOR, ".import-upload summary").click()
     find(driver, "import-file").send_keys(str(yaml_path.resolve()))
     wait(driver, lambda d: find(d, "import-yaml").get_attribute("value").startswith("character"))
     find(driver, "import-create").click()
     wait(driver, lambda d: d.find_elements(By.CSS_SELECTOR, ".import-choice"))
+    assert all(p.is_displayed() for p in driver.find_elements(By.CSS_SELECTOR, "#import-images details p"))
     return find(driver, "import-task").get_attribute("value")
 
 
@@ -32,6 +32,7 @@ def vote(driver, task: dict, orders: list[list[int]]) -> None:
     wait(driver, lambda d: find(d, "import-save").is_enabled())
     find(driver, "import-save").click()
     wait(driver, lambda d: not find(d, "import-refresh").get_attribute("disabled"))
+    assert all(p.is_displayed() for p in driver.find_elements(By.CSS_SELECTOR, "#import-images details p"))
 
 
 def finish(driver, task_id: str, output: Path) -> dict:
@@ -53,8 +54,7 @@ def finish(driver, task_id: str, output: Path) -> dict:
             find(driver, "import-export").click()
             wait(driver, lambda d: not find(d, "import-refresh").get_attribute("disabled"))
             driver.refresh()
-            wait(driver, lambda d: d.find_elements(By.ID, "nav-imported"))
-            find(driver, "nav-imported").click()
+            wait(driver, lambda d: find(d, "imported-view").is_displayed())
             wait(driver, lambda d: find(d, "import-task").is_enabled())
             Select(find(driver, "import-task")).select_by_value(task_id)
             wait(driver, lambda d: not find(d, "import-work").get_attribute("hidden"))

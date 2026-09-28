@@ -25,6 +25,7 @@ export function showImages(task) {
       $('zoom').showModal();
     };
     const prompt = element('details');
+    prompt.open = true;
     prompt.append(element('summary', 'Prompt'), element('p', image.prompt || '(No prompt)'));
     card.append(button, prompt);
     $('images').append(card);
