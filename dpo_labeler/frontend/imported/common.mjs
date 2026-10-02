@@ -33,5 +33,5 @@ export const model = {tasks: [], task: null, choices: Object.create(null),
 export function canSave() {
   const task = model.task;
   $('save').disabled = model.busy || !task?.pair || model.imagesReady !== 2 ||
-    !$('reviewer').value.trim() || !task.dimensions.every(d => model.choices[d]);
+    !task.dimensions.every(d => model.choices[d]);
 }

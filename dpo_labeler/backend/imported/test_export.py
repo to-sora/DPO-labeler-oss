@@ -11,7 +11,7 @@ class ExportTests(ImportCase):
         estimate = json.loads(empty["dimension-0/ranking.json"])
         self.assertFalse(estimate["certified"])
         self.assertEqual([len(g) for g in estimate["groups"]], [2] * 5)
-        self.service.submit(task["task_id"], self.vote(task))
+        self.service.submit(task["task_id"], self.vote(task), reviewer_username="reviewer")
         partial = self.archive(task["task_id"])
         dataset_ids, comparisons = set(), set()
         for d in range(5):
@@ -32,7 +32,7 @@ class ExportTests(ImportCase):
     def test_exported_events_remain_independent_in_existing_label_store(self) -> None:
         from ..labels import LabelStore
         task = self.create()
-        self.service.submit(task["task_id"], self.vote(task))
+        self.service.submit(task["task_id"], self.vote(task), reviewer_username="reviewer")
         archive = self.archive(task["task_id"])
         labels = self.root / "compatible-labels"
         labels.mkdir()
@@ -42,7 +42,7 @@ class ExportTests(ImportCase):
 
     def test_partial_cutoffs_include_all_image_and_prompt_references(self) -> None:
         task = self.create(23, 1)
-        self.service.submit(task["task_id"], self.vote(task))
+        self.service.submit(task["task_id"], self.vote(task), reviewer_username="reviewer")
         ranking = json.loads(self.archive(task["task_id"])["dimension-0/ranking.json"])
         self.assertEqual(len(ranking["images"]), 23)
         self.assertEqual(ranking["tolerance_ranks"], 1)

@@ -5,9 +5,12 @@ from http.server import ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import quote
 
+import yaml
+
 from ..app import DpoLabelerApp
 from .handler import ImportedRequestHandler
-from .test_support import ImportCase
+from .service import ImportedTasks
+from .test_support import ImportCase, rows
 
 
 class ImportedAuthTests(ImportCase):
@@ -17,8 +20,9 @@ class ImportedAuthTests(ImportCase):
         dataset = self.root / "datasets"
         dataset.mkdir()
         app = DpoLabelerApp(dataset_root=dataset, state_dir=self.root / "state",
-                            invite_token="change-me")
+                            invite_token="change-me", image_roots=[self.images])
         self.addCleanup(app.close)
+        self.service = ImportedTasks(self.root / "state", app.catalog_service.image_roots)
         handler = type("TestImportedHandler", (ImportedRequestHandler,), {
             "app": app, "imported": self.service,
             "frontend_dir": Path(__file__).resolve().parents[2] / "frontend",
@@ -88,3 +92,54 @@ class ImportedAuthTests(ImportCase):
         self.assertEqual(status, 200)
         self.assertEqual(self.service.get(task_id)["comparisons"], 1)
         self.assertEqual(self.request("/api/v1/imported/tasks", cookie=cookie + "invalid")[0], 401)
+
+    def test_comparisons_use_session_reviewer_and_ignore_body_identity_on_retry(self) -> None:
+        _, headers, _ = self.login("change-me")
+        cookie = headers["Set-Cookie"].split(";", 1)[0]
+        task_id = self.task["task_id"]
+        route = f"/api/v1/imported/tasks/{task_id}/comparisons"
+        payload = self.vote(self.task)
+        status, _, body = self.request(route, {**payload, "reviewer_username": "someone-else"}, cookie)
+        self.assertEqual(status, 200)
+        result = json.loads(body)["data"]
+        self.assertFalse(result["replayed"])
+        self.assertEqual({event["reviewer_username"] for event in result["events"]}, {"mobile-reviewer"})
+        status, _, body = self.request(route, payload, cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(body)["data"], {**result, "replayed": True})
+
+        _, headers, _ = self.request("/api/v1/session/start", {
+            "invite_token": "change-me", "reviewer_username": "someone-else",
+            "client_instance_id": "other-browser",
+        })
+        other_cookie = headers["Set-Cookie"].split(";", 1)[0]
+        self.assertEqual(self.request(route, {**payload, "reviewer_username": "mobile-reviewer"},
+                                      other_cookie)[0], 409)
+        next_task = self.service.get(task_id)
+        self.assertEqual(next_task["comparisons"], 1)
+        status, _, body = self.request(route, self.vote(next_task), cookie)
+        self.assertEqual(status, 200)
+        self.assertFalse(json.loads(body)["data"]["replayed"])
+        archive = self.archive(task_id)
+        for d in range(len(self.task["dimensions"])):
+            events = rows(archive[f"dimension-{d}/label_events.jsonl"])
+            self.assertEqual(len(events), 2)
+            self.assertEqual({event["reviewer_username"] for event in events}, {"mobile-reviewer"})
+
+    def test_import_api_rejects_unapproved_directories_and_prompt_escape(self) -> None:
+        _, headers, _ = self.login("change-me")
+        cookie = headers["Set-Cookie"].split(";", 1)[0]
+        secret = self.root / "outside-secret.txt"
+        secret.write_text("private fixture", encoding="utf-8")
+        outside = self.root / "outside"
+        outside.mkdir()
+        (outside / "0.png").write_bytes((self.images / "0.png").read_bytes())
+        for override in ({"image_dir": str(outside)}, {"prompt_dir": str(self.root)},
+                         {"image": [{"image-path": "0.png", "prompt-path": "../outside-secret.txt"}]},
+                         {"image": [{"image-path": "0.png", "prompt-path": str(secret)}]}):
+            with self.subTest(override=override):
+                source = yaml.safe_dump({**self.manifest(1), **override})
+                status, _, body = self.request("/api/v1/imported/tasks", {"yaml": source}, cookie)
+                self.assertEqual(status, 400)
+                self.assertNotIn(b"private fixture", body)
+        self.assertEqual(len(self.service.catalog()["tasks"]), 1)

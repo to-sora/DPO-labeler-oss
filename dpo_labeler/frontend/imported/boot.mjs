@@ -57,13 +57,9 @@ function updateSession(session) {
     canSave();
   } else if (!signedIn) {
     signedIn = true;
-    $('reviewer').value = session.reviewer_username;
     show();
   }
 }
-$('reviewer').oninput = () => {
-  canSave();
-};
 $('file').onchange = () => guarded(async () => {
   if ($('file').files[0]) $('yaml').value = await $('file').files[0].text();
 });

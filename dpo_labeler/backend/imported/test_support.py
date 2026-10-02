@@ -19,7 +19,7 @@ class ImportCase(unittest.TestCase):
         self.root = Path(self.temp.name).resolve()
         self.images = self.root / "external"
         self.images.mkdir()
-        self.service = ImportedTasks(self.root / "state")
+        self.service = ImportedTasks(self.root / "state", [self.images])
 
     def manifest(self, n: int = 10, dims: int = 5) -> dict:
         for i in range(n):
@@ -34,7 +34,7 @@ class ImportCase(unittest.TestCase):
     def vote(self, task: dict, rankings: list[list[int]] | None = None) -> dict:
         a, b = task["pair"]["image_ids"]
         ranks = rankings or [list(range(len(task["images"])))] * len(task["dimensions"])
-        return {"comparison_id": task["pair"]["comparison_id"], "reviewer_username": "reviewer",
+        return {"comparison_id": task["pair"]["comparison_id"],
                 "client_instance_id": "browser-instance", "choices": {
                     d: "a_good" if order.index(a) < order.index(b) else "b_good"
                     for d, order in zip(task["dimensions"], ranks)}}

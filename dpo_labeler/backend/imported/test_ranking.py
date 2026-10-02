@@ -7,7 +7,7 @@ class RankingTests(ImportCase):
     def test_precheck_finishes_monotone_dimensions_in_n_minus_one(self) -> None:
         task = self.create()
         while task["pair"]:
-            self.service.submit(task["task_id"], self.vote(task))
+            self.service.submit(task["task_id"], self.vote(task), reviewer_username="reviewer")
             task = self.service.get(task["task_id"])
         self.assertTrue(task["complete"])
         self.assertEqual(task["comparisons"], 9)
@@ -20,7 +20,7 @@ class RankingTests(ImportCase):
         saw_locked = False
         while task["pair"]:
             saw_locked |= bool(task["pair"]["locked"])
-            self.service.submit(task["task_id"], self.vote(task, orders))
+            self.service.submit(task["task_id"], self.vote(task, orders), reviewer_username="reviewer")
             task = self.service.get(task["task_id"])
             self.assertLessEqual(task["comparisons"], n * (n - 1) // 2)
         self.assertTrue(saw_locked)
@@ -39,11 +39,11 @@ class RankingTests(ImportCase):
         task = self.create(10, 2)
         orders = [list(range(10)), [2, 5, 1, 9, 0, 4, 3, 8, 6, 7]]
         while task["pair"] and not task["pair"]["locked"]:
-            self.service.submit(task["task_id"], self.vote(task, orders))
+            self.service.submit(task["task_id"], self.vote(task, orders), reviewer_username="reviewer")
             task = self.service.get(task["task_id"])
         self.assertTrue(task["pair"]["locked"])
         payload = self.vote(task, orders)
         for dim in task["pair"]["locked"]:
             del payload["choices"][dim]
-        events = self.service.submit(task["task_id"], payload)["events"]
+        events = self.service.submit(task["task_id"], payload, reviewer_username="reviewer")["events"]
         self.assertTrue(any(e["inferred"] for e in events))

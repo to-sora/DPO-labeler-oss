@@ -8,7 +8,7 @@ def dispatch(handler, method: str) -> None:
     path = urlparse(handler.path).path
     parts = [unquote(p) for p in path.strip("/").split("/")]
     try:
-        handler.app.auth_service.require_session(handler.headers.get("Cookie"))
+        session = handler.app.auth_service.require_session(handler.headers.get("Cookie"))
         service = handler.imported
         if parts[:2] == ["media", "imported"] and len(parts) == 4:
             handler._send_file(service.image(parts[2], int(parts[3])))
@@ -19,7 +19,7 @@ def dispatch(handler, method: str) -> None:
         elif len(parts) == 5 and method == "GET":
             data = service.get(parts[4])
         elif len(parts) == 6 and method == "POST" and parts[5] == "comparisons":
-            data = service.submit(parts[4], payload)
+            data = service.submit(parts[4], payload, reviewer_username=session.reviewer_username)
         elif len(parts) == 6 and method == "POST" and parts[5] == "export":
             dimension = payload.get("dimension")
             if dimension is not None and type(dimension) is not int:

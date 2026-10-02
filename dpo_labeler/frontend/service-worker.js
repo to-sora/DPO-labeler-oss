@@ -1,4 +1,4 @@
-const STATIC_CACHE = "dpo-labeler-static-v10";
+const STATIC_CACHE = "dpo-labeler-static-v11";
 const DATA_CACHE = "dpo-labeler-data-v8";
 const STATIC_ASSETS = [
   "/",

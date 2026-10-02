@@ -3,6 +3,7 @@ import shutil
 import sqlite3
 import uuid
 from pathlib import Path
+from typing import Sequence
 
 from .database import initialize, read, task_path, transaction, write
 from .export import bundle
@@ -12,12 +13,13 @@ from .submit import accept
 
 
 class ImportedTasks:
-    def __init__(self, state_dir: Path) -> None:
+    def __init__(self, state_dir: Path, image_roots: Sequence[Path]) -> None:
         self.root = Path(state_dir) / "imported"
         self.root.mkdir(parents=True, exist_ok=True)
+        self.image_roots = tuple(Path(root).expanduser().resolve() for root in image_roots)
 
     def import_yaml(self, source: str) -> dict:
-        snapshot = parse_manifest(source)
+        snapshot = parse_manifest(source, self.image_roots)
         slug = re.sub(r"[^\w-]+", "-", snapshot["character_name"]).strip("-")[:32]
         task_id = f"{slug or 'character'}-{uuid.uuid4().hex}"
         directory = self.root / task_id
@@ -51,9 +53,9 @@ class ImportedTasks:
             write(db, "state", state)
             return public_state(snapshot, state)
 
-    def submit(self, task_id: str, payload: dict) -> dict:
+    def submit(self, task_id: str, payload: dict, *, reviewer_username: str) -> dict:
         with transaction(task_path(self.root, task_id)) as db:
-            return accept(db, payload)
+            return accept(db, payload, reviewer_username)
 
     def export(self, task_id: str, dimension: int | None = None) -> bytes:
         path = task_path(self.root, task_id)

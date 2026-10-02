@@ -37,7 +37,7 @@ export async function save() {
   const key = pendingKey(id);
   const payload = JSON.parse(localStorage.getItem(key) || 'null') || {
     comparison_id: model.task.pair.comparison_id,
-    reviewer_username: $('reviewer').value.trim(), client_instance_id: client,
+    client_instance_id: client,
     choices: model.choices,
   };
   localStorage.setItem(key, JSON.stringify(payload));

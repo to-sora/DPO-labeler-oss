@@ -6,8 +6,8 @@ from .events import Conflict, make_events, submission
 from .state import graphs_from, refresh
 
 
-def accept(db: sqlite3.Connection, payload: dict) -> dict:
-    request = submission(payload)
+def accept(db: sqlite3.Connection, payload: dict, reviewer_username: str) -> dict:
+    request = submission(payload, reviewer_username)
     previous = db.execute("SELECT request, events FROM batches WHERE id=?",
                           (request["comparison_id"],)).fetchone()
     if previous:

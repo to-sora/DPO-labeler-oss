@@ -7,12 +7,12 @@ class Conflict(ValueError):
     pass
 
 
-def submission(payload: dict) -> dict:
+def submission(payload: dict, reviewer_username: str) -> dict:
     choices = payload.get("choices")
     if not isinstance(choices, dict):
         raise ValueError("choices must contain dimension preferences")
     return {"comparison_id": text(payload.get("comparison_id"), "comparison_id"),
-            "reviewer_username": text(payload.get("reviewer_username"), "Reviewer"),
+            "reviewer_username": text(reviewer_username, "Reviewer"),
             "client_instance_id": text(payload.get("client_instance_id"), "Client"),
             "choices": choices}
 

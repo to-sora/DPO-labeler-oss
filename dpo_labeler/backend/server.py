@@ -328,7 +328,7 @@ def main(argv: list[str] | None = None) -> None:
     frontend_dir = Path(args.frontend_dir).resolve() if args.frontend_dir else (Path(__file__).resolve().parents[1] / "frontend")
     handler = type("ConfiguredLabelerRequestHandler", (ImportedRequestHandler,), {
         "app": app, "frontend_dir": frontend_dir,
-        "imported": ImportedTasks(Path(args.state_dir)),
+        "imported": ImportedTasks(Path(args.state_dir), app.catalog_service.image_roots),
     })
     class LabelerThreadingHTTPServer(ThreadingHTTPServer):
         daemon_threads = True
