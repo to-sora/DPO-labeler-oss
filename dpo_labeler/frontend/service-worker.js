@@ -1,4 +1,4 @@
-const STATIC_CACHE = "dpo-labeler-static-v8";
+const STATIC_CACHE = "dpo-labeler-static-v11";
 const DATA_CACHE = "dpo-labeler-data-v8";
 const STATIC_ASSETS = [
   "/",
@@ -9,10 +9,21 @@ const STATIC_ASSETS = [
   "/api.mjs",
   "/storage.mjs",
   "/manifest.webmanifest",
+  "/imported/view.html",
+  "/imported/style.css",
+  "/imported/layout.css",
+  "/imported/boot.mjs",
+  "/imported/common.mjs",
+  "/imported/catalog.mjs",
+  "/imported/actions.mjs",
+  "/imported/render.mjs",
+  "/imported/images.mjs",
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.addAll(STATIC_ASSETS)));
+  event.waitUntil(caches.open(STATIC_CACHE).then((cache) =>
+    cache.addAll(STATIC_ASSETS.map((path) => new Request(path, {cache: "reload"})))
+  ));
   self.skipWaiting();
 });
 
@@ -31,6 +42,10 @@ self.addEventListener("fetch", (event) => {
   }
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) {
+    return;
+  }
+  if (url.pathname.startsWith("/api/v1/imported/") || url.pathname.startsWith("/media/imported/")) {
+    event.respondWith(fetch(request, {cache: "no-store"}));
     return;
   }
 

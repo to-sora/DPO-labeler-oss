@@ -94,6 +94,10 @@ const state = {
   },
 };
 
+export function getSession() {
+  return state.session;
+}
+
 const elements = {
   statusPill: document.querySelector("#status-pill"),
   progressText: document.querySelector("#progress-text"),
@@ -165,6 +169,10 @@ async function init() {
 }
 
 function bindUi() {
+  document.addEventListener("dpo-labeler-auth-required", () => {
+    state.session = null;
+    switchView("auth");
+  });
   window.addEventListener("online", () => {
     state.online = true;
     state.syncFailed = false;
@@ -796,6 +804,7 @@ function renderShell() {
   elements.tasksView.hidden = state.currentView !== "tasks";
   elements.reviewView.hidden = state.currentView !== "review";
   elements.exportView.hidden = state.currentView !== "export";
+  document.dispatchEvent(new CustomEvent("dpo-labeler-session", { detail: state.session }));
 
   if (state.currentView === "tasks") {
     renderCatalog();
