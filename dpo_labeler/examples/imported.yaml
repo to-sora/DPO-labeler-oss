@@ -1,0 +1,18 @@
+task-name: Character portrait preferences
+character-name: Example character
+image_dir: /mnt/images/example-character
+# Optional; defaults to image_dir. Both directories must be under configured roots.
+prompt_dir: /mnt/images/example-character
+image:
+  - image-path: portrait-a.png
+    prompt-path: portrait-a.txt
+    prompt: Portrait beside a window
+  - image-path: portrait-b.png
+    prompt-path: portrait-b.txt
+    prompt: Portrait in a garden
+dim-name:
+  - Composition
+  - Lighting
+  - Detail
+  - Color
+  - Character

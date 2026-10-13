@@ -1,0 +1,85 @@
+import hashlib
+import re
+import shutil
+import sqlite3
+import uuid
+from pathlib import Path
+from typing import Sequence
+
+from .database import initialize, read, task_path, transaction
+from .export import bundle
+from .manifest import parse_manifest
+from .reviewers import review_state, save_review_state
+from .state import new_state, prepare_pair, public_state
+from .submit import accept
+
+
+class ImportedTasks:
+    def __init__(self, state_dir: Path, image_roots: Sequence[Path]) -> None:
+        self.root = Path(state_dir) / "imported"
+        self.root.mkdir(parents=True, exist_ok=True)
+        self.image_roots = tuple(Path(root).expanduser().resolve() for root in image_roots)
+
+    def load_startup(self, manifests: Sequence[str | Path]) -> None:
+        for manifest in manifests:
+            path = Path(manifest).expanduser().resolve()
+            source = path.read_text(encoding="utf-8")
+            digest = hashlib.sha256((str(path) + "\0" + source).encode("utf-8")).hexdigest()[:32]
+            task_id = f"startup-{digest}"
+            if not (self.root / task_id / "task.sqlite3").is_file():
+                self.import_yaml(source, task_id=task_id)
+
+    def import_yaml(self, source: str, *, task_id: str | None = None) -> dict:
+        snapshot = parse_manifest(source, self.image_roots)
+        slug = re.sub(r"[^\w-]+", "-", snapshot["character_name"]).strip("-")[:32]
+        task_id = task_id or f"{slug or 'character'}-{uuid.uuid4().hex}"
+        directory = self.root / task_id
+        directory.mkdir()
+        snapshot.update(task_id=task_id, output_dir=str(directory.resolve()))
+        try:
+            state = new_state(snapshot)
+            initialize(directory / "task.sqlite3", snapshot, source, state)
+        except BaseException:
+            shutil.rmtree(directory)
+            raise
+        return public_state(snapshot, state)
+
+    def catalog(self, *, reviewer_username: str | None = None) -> dict:
+        tasks, warnings = [], []
+        for path in sorted(self.root.glob("*/task.sqlite3")):
+            try:
+                with transaction(path) as db:
+                    snapshot = read(db, "snapshot")
+                    state = read(db, "state") if reviewer_username is None else review_state(db, reviewer_username)
+                tasks.append({k: v for k, v in snapshot.items() if k != "images"} | {
+                    "image_count": len(snapshot["images"]),
+                    "comparisons": state["comparisons"],
+                    "complete": all(r["certified"] for r in state["rankings"])})
+            except (ValueError, OSError, sqlite3.DatabaseError) as exc:
+                warnings.append(f"{path.parent.name}: {exc}")
+        return {"tasks": tasks, "warnings": warnings}
+
+    def get(self, task_id: str, *, reviewer_username: str) -> dict:
+        with transaction(task_path(self.root, task_id)) as db:
+            snapshot, state = read(db, "snapshot"), review_state(db, reviewer_username)
+            prepare_pair(state)
+            save_review_state(db, reviewer_username, state)
+            return {**public_state(snapshot, state), "reviewer_username": reviewer_username}
+
+    def submit(self, task_id: str, payload: dict, *, reviewer_username: str) -> dict:
+        with transaction(task_path(self.root, task_id)) as db:
+            return accept(db, payload, reviewer_username)
+
+    def export(self, task_id: str, dimension: int | None = None, *, reviewer_username: str) -> bytes:
+        path = task_path(self.root, task_id)
+        with transaction(path) as db:
+            reviewer_id = hashlib.sha256(reviewer_username.encode("utf-8")).hexdigest()[:32]
+            directory = path.parent / "exports" / reviewer_id
+            return bundle(db, directory, dimension, reviewer_username=reviewer_username).read_bytes()
+
+    def image(self, task_id: str, index: int) -> Path:
+        with transaction(task_path(self.root, task_id)) as db:
+            images = read(db, "snapshot")["images"]
+        if index not in range(len(images)):
+            raise KeyError(index)
+        return Path(images[index]["image_path"])

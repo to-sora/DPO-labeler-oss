@@ -277,6 +277,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
         help="Allowed root containing session images (repeatable)",
     )
     parser.add_argument("--state-dir", required=True, help="Directory for label events, preview cache, and exports")
+    parser.add_argument("--import-yaml", action="append", default=[], metavar="PATH",
+                        help="Import an image task from a server-side YAML file at startup (repeatable)")
     parser.add_argument("--frontend-dir", default=None, help="Override frontend static asset directory")
     parser.add_argument("--host", default="127.0.0.1", help="Host to bind")
     parser.add_argument("--port", default=8787, type=int, help="Port to bind")
@@ -302,9 +304,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    from .imported.handler import ImportedRequestHandler
+    from .imported.service import ImportedTasks
+
     parser = build_arg_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     app = DpoLabelerApp(
         dataset_root=args.dataset_root,
         state_dir=args.state_dir,
@@ -322,13 +327,22 @@ def main() -> None:
         x_access_token_secret=args.x_access_token_secret,
         exclude_dirs=args.exclude_dirs,
     )
+    imported = ImportedTasks(Path(args.state_dir), app.catalog_service.image_roots)
+    try:
+        imported.load_startup(args.import_yaml)
+    except (OSError, ValueError) as exc:
+        app.close()
+        parser.error(f"Cannot import startup tasks: {exc}")
     frontend_dir = Path(args.frontend_dir).resolve() if args.frontend_dir else (Path(__file__).resolve().parents[1] / "frontend")
-    handler = type("ConfiguredLabelerRequestHandler", (LabelerRequestHandler,), {"app": app, "frontend_dir": frontend_dir})
+    handler = type("ConfiguredLabelerRequestHandler", (ImportedRequestHandler,), {
+        "app": app, "frontend_dir": frontend_dir,
+        "imported": imported,
+    })
     class LabelerThreadingHTTPServer(ThreadingHTTPServer):
         daemon_threads = True
 
     server = LabelerThreadingHTTPServer((args.host, args.port), handler)
-    print(f"DPO labeler {app.get_config()['app_version']} listening on http://{args.host}:{args.port}/")
+    print(f"DPO labeler {app.get_config()['app_version']} listening on http://{args.host}:{server.server_port}/")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
