@@ -1,5 +1,2 @@
 port: 8083
 purpose: DPO and imported-image labeling over HTTP
-policy: public
-enable_whitelist: false
-whitelist: ''

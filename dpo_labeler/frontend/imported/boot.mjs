@@ -1,7 +1,7 @@
 import {getSession} from '../app.js';
 import {$, element, model, canSave} from './common.mjs';
 import {refreshTasks, filterTasks, loadTask} from './catalog.mjs';
-import {guarded, importTask, save, download} from './actions.mjs';
+import {guarded, save, download} from './actions.mjs';
 
 const response = await fetch('/imported/view.html', {cache: 'no-store'});
 const template = document.createElement('template');
@@ -35,7 +35,7 @@ button.onclick = () => root.hidden ? show() : leave();
 });
 const entry = element('section', undefined, 'card panel import-entry');
 entry.append(element('h2', 'Imported image tasks'));
-const count = element('p', 'Import external images and grade each dimension.');
+const count = element('p', 'Select an image task and grade each dimension.');
 count.id = 'import-entry-count';
 const open = element('button', 'Select imported tasks', 'nav-btn');
 open.onclick = show;
@@ -60,10 +60,6 @@ function updateSession(session) {
     show();
   }
 }
-$('file').onchange = () => guarded(async () => {
-  if ($('file').files[0]) $('yaml').value = await $('file').files[0].text();
-});
-$('create').onclick = () => guarded(importTask);
 $('refresh').onclick = () => guarded(async () => {
   await refreshTasks(); await loadTask($('task').value);
 });

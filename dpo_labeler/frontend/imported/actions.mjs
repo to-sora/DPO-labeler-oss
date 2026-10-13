@@ -5,7 +5,7 @@ import {pendingKey, refreshTasks, loadTask} from './catalog.mjs';
 export async function guarded(action) {
   if (model.busy) return;
   model.busy = true;
-  const ids = ['create', 'refresh', 'task', 'file', 'export'];
+  const ids = ['refresh', 'task', 'export'];
   const disableControls = disabled => {
     ids.forEach(id => $(id).disabled = disabled);
     $('task-list').querySelectorAll('button').forEach(button => button.disabled = disabled);
@@ -19,16 +19,6 @@ export async function guarded(action) {
     disableControls(false);
     canSave();
   }
-}
-
-export async function importTask() {
-  message('Checking source images and importing…');
-  const task = await data('', {yaml: $('yaml').value});
-  $('filter').value = '';
-  await refreshTasks();
-  $('task').value = task.task_id;
-  await loadTask(task.task_id);
-  $('yaml').closest('details').open = false;
 }
 
 export async function save() {

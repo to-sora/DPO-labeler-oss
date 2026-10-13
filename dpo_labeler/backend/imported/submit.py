@@ -1,8 +1,9 @@
 import json
 import sqlite3
 
-from .database import encode, read, write
+from .database import encode, read
 from .events import Conflict, make_events, submission
+from .reviewers import review_state, save_review_state
 from .state import graphs_from, refresh
 
 
@@ -14,7 +15,7 @@ def accept(db: sqlite3.Connection, payload: dict, reviewer_username: str) -> dic
         if json.loads(previous[0]) != request:
             raise Conflict("This comparison was already saved; refresh to continue")
         return {"events": json.loads(previous[1]), "replayed": True}
-    snapshot, state = read(db, "snapshot"), read(db, "state")
+    snapshot, state = read(db, "snapshot"), review_state(db, reviewer_username)
     pair = state["pending"]
     if pair is None or pair["comparison_id"] != request["comparison_id"]:
         raise Conflict("Comparison is no longer active; refresh to continue")
@@ -43,5 +44,5 @@ def accept(db: sqlite3.Connection, payload: dict, reviewer_username: str) -> dic
     refresh(state, graphs)
     db.execute("INSERT INTO batches VALUES (?, ?, ?)",
                (request["comparison_id"], encode(request), encode(events)))
-    write(db, "state", state)
+    save_review_state(db, reviewer_username, state)
     return {"events": events, "replayed": False}

@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 import yaml
 
 from .service import ImportedTasks
@@ -5,6 +7,17 @@ from .test_support import ImportCase
 
 
 class ManifestTests(ImportCase):
+    def test_image_limit_accepts_1000_and_rejects_1001_before_reading_files(self) -> None:
+        manifest = self.manifest(1000, 1)
+        task = self.service.import_yaml(yaml.safe_dump(manifest))
+        self.assertEqual(len(task["images"]), 1000)
+        manifest["image"].append({"image-path": "missing.png"})
+        with patch("dpo_labeler.backend.imported.manifest.Image.open") as open_image:
+            with self.assertRaisesRegex(ValueError, "at most 1000 images"):
+                self.service.import_yaml(yaml.safe_dump(manifest))
+            open_image.assert_not_called()
+        self.assertEqual(len(self.service.catalog()["tasks"]), 1)
+
     def test_external_images_prompt_file_and_inline_fallback(self) -> None:
         manifest = self.manifest()
         (self.images / "prompt.txt").write_text("file prompt 貓", encoding="utf-8")
@@ -96,8 +109,9 @@ class ManifestTests(ImportCase):
         first = self.service.import_yaml(source)
         second = self.service.import_yaml(source)
         self.assertNotEqual(first["task_id"], second["task_id"])
+        first = self.service.get(first["task_id"], reviewer_username=self.reviewer)
         self.service.submit(first["task_id"], self.vote(first), reviewer_username="reviewer")
-        self.assertEqual(self.service.get(second["task_id"])["comparisons"], 0)
+        self.assertEqual(self.service.get(second["task_id"], reviewer_username=self.reviewer)["comparisons"], 0)
         shutil.rmtree(first["output_dir"])
         self.assertEqual(len(self.service.catalog()["tasks"]), 1)
         self.assertTrue((self.images / "0.png").is_file())

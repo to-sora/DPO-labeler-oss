@@ -106,6 +106,9 @@ bash start_all_endpoints.sh
 
 默认只 bind localhost；也可以在交互安装时选择 Tailscale address 或其他接口。请只在本机或可信私有网络使用。
 
+已有图片集可参阅 [外部图片任务](docs/imported_images.md)，包含启动导入命令、YAML 格式、
+各评分者的进度及 [导出格式](docs/imported_exports.md)。
+
 ## Image Grader
 
 Grader profile：

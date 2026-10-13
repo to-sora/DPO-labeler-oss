@@ -7,14 +7,11 @@ from selenium.webdriver.support.ui import Select
 from .browser import api, find, login, screenshot, wait
 
 
-def open_import(driver, base: str, yaml_path: Path) -> str:
+def open_task(driver, base: str, reviewer: str = "Firefox-reviewer") -> str:
     driver.get(base)
-    login(driver)
-    wait(driver, lambda d: find(d, "import-file").is_enabled())
-    driver.find_element(By.CSS_SELECTOR, ".import-upload summary").click()
-    find(driver, "import-file").send_keys(str(yaml_path.resolve()))
-    wait(driver, lambda d: find(d, "import-yaml").get_attribute("value").startswith("character"))
-    find(driver, "import-create").click()
+    login(driver, reviewer=reviewer)
+    wait(driver, lambda d: len(Select(find(d, "import-task")).options) == 2)
+    Select(find(driver, "import-task")).select_by_index(1)
     wait(driver, lambda d: d.find_elements(By.CSS_SELECTOR, ".import-choice"))
     assert all(p.is_displayed() for p in driver.find_elements(By.CSS_SELECTOR, "#import-images details p"))
     return find(driver, "import-task").get_attribute("value")

@@ -12,6 +12,8 @@ from .service import ImportedTasks
 
 
 class ImportCase(unittest.TestCase):
+    reviewer = "reviewer"
+
     def setUp(self) -> None:
         Path("output").mkdir(exist_ok=True)
         self.temp = tempfile.TemporaryDirectory(dir="output")
@@ -29,7 +31,8 @@ class ImportCase(unittest.TestCase):
                 "image": [{"image-path": f"{i}.png", "prompt": f"prompt {i}"} for i in range(n)]}
 
     def create(self, n: int = 10, dims: int = 5) -> dict:
-        return self.service.import_yaml(yaml.safe_dump(self.manifest(n, dims)))
+        task = self.service.import_yaml(yaml.safe_dump(self.manifest(n, dims)))
+        return self.service.get(task["task_id"], reviewer_username=self.reviewer)
 
     def vote(self, task: dict, rankings: list[list[int]] | None = None) -> dict:
         a, b = task["pair"]["image_ids"]
@@ -39,8 +42,9 @@ class ImportCase(unittest.TestCase):
                     d: "a_good" if order.index(a) < order.index(b) else "b_good"
                     for d, order in zip(task["dimensions"], ranks)}}
 
-    def archive(self, task_id: str, dim: int | None = None) -> dict[str, str]:
-        with zipfile.ZipFile(BytesIO(self.service.export(task_id, dim))) as archive:
+    def archive(self, task_id: str, dim: int | None = None, *, reviewer: str | None = None) -> dict[str, str]:
+        with zipfile.ZipFile(BytesIO(self.service.export(
+                task_id, dim, reviewer_username=reviewer or self.reviewer))) as archive:
             return {p: archive.read(p).decode("utf-8") for p in archive.namelist()}
 
 

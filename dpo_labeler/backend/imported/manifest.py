@@ -6,6 +6,8 @@ from PIL import Image
 
 from ..common import path_is_within_roots
 
+MAX_IMAGES = 1000
+
 
 def text(value: object, field: str) -> str:
     if not isinstance(value, str) or not value.strip():
@@ -43,6 +45,8 @@ def parse_manifest(source: str, image_roots: Sequence[Path]) -> dict:
     entries = data.get("image")
     if not isinstance(entries, list) or not entries:
         raise ValueError("image must be a nonempty list")
+    if len(entries) > MAX_IMAGES:
+        raise ValueError(f"An imported task can contain at most {MAX_IMAGES} images")
     images, seen = [], set()
     for index, item in enumerate(entries):
         if not isinstance(item, dict):

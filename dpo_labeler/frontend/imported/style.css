@@ -4,9 +4,6 @@ body.import-mode .content > :not(#imported-view) { display:none !important; }
 body.import-mode .status-grid { display:none; }
 #imported-view *, .import-entry { min-width:0; }
 .import-controls { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
-.import-upload { grid-column:1/-1; }
-.import-upload summary { cursor:pointer; font-weight:700; padding:10px 0; }
-.import-upload .field { margin:14px 0; }
 #import-work { display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:18px; align-items:start; }
 #import-work > .panel:first-child, #import-complete { grid-column:1/-1; }
 body.import-task-active #imported-view > header { display:none; }

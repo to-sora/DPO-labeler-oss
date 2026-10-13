@@ -1,4 +1,6 @@
+import os
 from pathlib import Path
+import shutil
 import subprocess
 
 from selenium import webdriver
@@ -8,18 +10,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 def firefox(downloads: Path):
+    binary = os.environ.get("FIREFOX_BINARY") or shutil.which("firefox")
+    driver = os.environ.get("GECKODRIVER") or shutil.which("geckodriver")
+    if not binary or not driver:
+        raise RuntimeError("Install Firefox and geckodriver on PATH or set FIREFOX_BINARY and GECKODRIVER")
     options = webdriver.FirefoxOptions()
-    options.binary_location = str(Path.home() / "UAT-firefox/firefox")
+    options.binary_location = str(Path(binary).resolve())
     options.add_argument("-headless")
     options.add_argument("--remote-allow-system-access")
-    options.accept_insecure_certs = True
     options.enable_bidi = True
     options.set_preference("network.dns.disableIPv6", True)
     options.set_preference("network.proxy.type", 0)
     options.set_preference("browser.download.folderList", 2)
     options.set_preference("browser.download.dir", str(downloads.resolve()))
     options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/zip,application/x-ndjson")
-    service = Service(str(Path(".local-tool/geckodriver").resolve()),
+    service = Service(str(Path(driver).resolve()),
                       log_output=subprocess.DEVNULL)
     return webdriver.Firefox(options=options, service=service)
 

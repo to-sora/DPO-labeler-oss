@@ -1,8 +1,9 @@
+import {getSession} from '../app.js';
 import {$, data, element, message, model, canSave} from './common.mjs';
 import {render} from './render.mjs';
 
 let loadNumber = 0;
-export const pendingKey = id => `imported-pending-${id}`;
+export const pendingKey = id => `imported-pending-${JSON.stringify([getSession().reviewer_username, id])}`;
 
 export function filterTasks() {
   const current = $('task').value;

@@ -2,11 +2,11 @@
   <header class="card panel">
     <p class="eyebrow">External images</p>
     <h2>Compare across dimensions</h2>
-    <p>Choose A or B for every open dimension. Known preferences are filled in automatically.</p>
+    <p>Your progress is saved separately. Choose A or B for every open dimension. Known preferences are filled in automatically.</p>
   </header>
   <p id="import-message" role="status" aria-live="polite"></p>
   <details id="import-manage" class="card panel" open>
-    <summary>Select or import a task</summary>
+    <summary>Select a task</summary>
     <div class="import-controls">
     <label class="field">Filter task, character or absolute image path
       <input id="import-filter" type="search" placeholder="Task / character / /mnt/…">
@@ -19,13 +19,6 @@
       <p id="import-task-count" role="status">Loading imported tasks…</p>
       <div id="import-task-list" role="group" aria-label="Imported tasks"></div>
     </div>
-    <details class="import-upload">
-      <summary>Import a new YAML task</summary>
-      <p>Images must be readable on this server. Each import starts a separate task.</p>
-      <label class="field">YAML file<input id="import-file" type="file" accept=".yaml,.yml,text/yaml"></label>
-      <label class="field">Or paste YAML<textarea id="import-yaml" rows="5" spellcheck="false"></textarea></label>
-      <button id="import-create" class="primary-btn">Import task</button>
-    </details>
     </div>
   </details>
   <section id="import-work" hidden>

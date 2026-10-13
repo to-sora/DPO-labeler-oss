@@ -132,6 +132,10 @@ The launcher binds to localhost by default. Interactive setup can instead bind
 to a detected Tailscale address or all interfaces. It supervises every enabled
 service and stops all child process groups on Ctrl-C or when one service fails.
 
+For existing image collections, see [Imported image tasks](docs/imported_images.md)
+for startup-only YAML imports, the complete schema, reviewer progress, and
+[export formats](docs/imported_exports.md).
+
 ## Image Grading
 
 The grader dependency profiles are:
